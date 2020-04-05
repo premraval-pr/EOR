@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Page Use: Single Element XML Page for Message
+ Date Created: March 14,2020
+ Author: Karan Patel
+ -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/__constraintlayout_messageSingleElementRoot"
+    android:background="@color/__primaryColor"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/__primaryLightBackground"
+        android:id="@+id/__constraintlayout_messageSingleElement"
+
+       >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__icon_messsagecontactlogo"
+        android:id="@+id/__imageview_iconmessagecontact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:paddingTop="5dp"
+        android:text="Name"
+        android:textColor="@color/__textColor"
+        android:id="@+id/__textview_namemessagecontact"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_iconmessagecontact"
+        app:layout_constraintBottom_toTopOf="@id/__textview_messageshortview"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Message Message Message"
+        android:textColor="@color/__textColor"
+        android:id="@+id/__textview_messageshortview"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_iconmessagecontact"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_namemessagecontact"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

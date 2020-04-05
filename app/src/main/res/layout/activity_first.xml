@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Page Use: Main Activity
+Date Created: March 07,2020
+Author: Karan Patel
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstActivity"
+    android:id="@+id/__constraintlayout_mainscreen"
+    android:background="@color/__primaryColor">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/__viewpager_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        tools:context=".MainActivity"/>
+
+    <!--  Constraint Layout for making Card (SignIn/SignUp)    -->
+    <!-- Added dependencies for CirclePageIndicator in gradle -->
+    <com.viewpagerindicator.CirclePageIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__indicator_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/__viewpager_pager"
+        android:layout_marginBottom="50dp"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </com.viewpagerindicator.CirclePageIndicator>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

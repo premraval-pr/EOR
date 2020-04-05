@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/__primaryLightBackground">
+
+    <TextView
+        android:id="@+id/__textview_sociallink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/social_link_header"
+        android:textColor="@color/__textColor"
+        android:textSize="25sp"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/__textview_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facebook"
+        android:paddingVertical="10dp"
+        android:textSize="25sp"
+        android:gravity="end"
+        android:textColor="#ffffff"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_sociallink"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:drawableStart="@drawable/__facebooklogoicon"
+        android:paddingHorizontal="80dp"
+        android:background="@drawable/__roundbackground"
+        android:backgroundTint="@color/__primaryColor"/>
+
+    <TextView
+        android:id="@+id/__textview_instagram"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instagram"
+        android:paddingVertical="10dp"
+        android:textSize="25sp"
+        android:gravity="end"
+        android:textColor="#ffffff"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:drawableStart="@drawable/__instagramiconlogo"
+        android:paddingHorizontal="80dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/__textview_facebook"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/__roundbackground"
+        android:backgroundTint="#E73023"/>
+
+    <TextView
+        android:id="@+id/__textview_twitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:text="Twitter"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        android:drawableStart="@drawable/__twitterlogoicon"
+        android:paddingHorizontal="80dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/__textview_instagram"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/__roundbackground"
+        android:backgroundTint="@color/__primaryColor"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

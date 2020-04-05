@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:paddingVertical="10dp"
+    >
+
+    <TextView
+        android:id="@+id/__textview_itemhistorytitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Title"
+        android:textSize="25sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/__imageview_usernameimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__personicon"
+        app:layout_constraintStart_toStartOf="@id/__textview_itemhistorytitle"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemhistorytitle"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/__textview_historyusername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_usernameimage"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemhistorytitle"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_locationimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemhistorytitle"
+        android:src="@drawable/__locationicon"
+        app:layout_constraintLeft_toRightOf="@id/__textview_historyusername"
+        app:layout_constraintRight_toLeftOf="@id/__textview_historylocation"
+        android:layout_marginStart="20dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_historylocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_locationimage"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemhistorytitle"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__dropdownbutton"
+        app:layout_constraintRight_toLeftOf="@id/__textview_historylocation"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemhistorytitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/__textview_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintStart_toStartOf="@id/__imageview_usernameimage"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_usernameimage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/__textview_fromddmmyyyy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:textSize="10sp"
+        android:textColor="@color/__textColor"
+        android:textColorHint="@color/__textColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_from"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/__textview_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_usernameimage"
+        app:layout_constraintLeft_toRightOf="@id/__textview_from"
+        android:layout_marginStart="60dp"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/__textview_toddmmyyyy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:textSize="10sp"
+        android:textColorHint="@color/__textColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_to"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        app:layout_constraintLeft_toRightOf="@id/__textview_fromddmmyyyy"
+        android:visibility="gone"
+        />
+    <Button
+        android:id="@+id/__button_addreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a Review"
+        android:backgroundTint="@color/__primaryColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_fromddmmyyyy"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/__textview_fromddmmyyyy"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

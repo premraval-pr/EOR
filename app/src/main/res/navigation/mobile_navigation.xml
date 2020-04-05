@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.eor.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.eor.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_posts"
+        android:name="com.example.eor.PostsFragment"
+        android:label= "Posts"
+        tools:layout="@layout/fragment_posts" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.example.eor.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_hisory" />
+
+    <fragment
+        android:id="@+id/nav_inbox"
+        android:name="com.example.eor.InboxFragment"
+        android:label="Inbox"
+        tools:layout="@layout/fragment_inbox" />
+
+    <fragment
+        android:id="@+id/nav_social"
+        android:name="com.example.eor.SocialFragment"
+        android:label="Social"
+        tools:layout="@layout/fragment_social" />
+</navigation>

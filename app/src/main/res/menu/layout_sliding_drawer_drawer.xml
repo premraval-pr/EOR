@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/__homeicon"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/__menuprofileicon"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_posts"
+            android:icon="@drawable/__menupostsicon"
+            android:title="Posts" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/__menuhistoryicon"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_inbox"
+            android:icon="@drawable/__menuinboxicon"
+            android:title="Inbox" />
+        <item
+            android:id="@+id/nav_social"
+            android:icon="@drawable/__menusocialicon"
+            android:title="Social" />
+    </group>
+
+</menu>
