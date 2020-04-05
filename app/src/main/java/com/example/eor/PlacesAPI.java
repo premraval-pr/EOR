@@ -7,19 +7,20 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class PlacesAPI {
+    private static final String PLACES_KEY = "AIzaSyCQd5xKbR8hDA5ARjyStlUTZT2i7hXLYWY";
     public ArrayList<String> autoComplete(String input){
-        ArrayList<String> arrayList = new ArrayList();
+        ArrayList arrayList = new ArrayList();
         HttpURLConnection connection = null;
         StringBuilder jsonResult = new StringBuilder();
         try{
             StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" +
                     input +
-                    "&key=AIzaSyCQd5xKbR8hDA5ARjyStlUTZT2i7hXLYWY");
+                    "&key=" +
+                    PLACES_KEY);
             URL url = new URL(sb.toString());
             connection = (HttpURLConnection) url.openConnection();
             InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
