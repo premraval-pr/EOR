@@ -28,11 +28,22 @@ Author: Karan Patel
         android:id="@+id/__indicator_card"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/__viewpager_pager"
-        android:layout_marginBottom="50dp"
         android:padding="25dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:fillColor="@color/__primaryColor"
+        app:strokeColor="@color/__primaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp"
+        >
     </com.viewpagerindicator.CirclePageIndicator>
-
+    <ImageView
+        android:id="@+id/__imageview_biometric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__biometricicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="20dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

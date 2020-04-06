@@ -1,15 +1,22 @@
 package com.example.eor;
+
+
 import android.content.Intent;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 
 
 public class LoginFragmentActivity extends Fragment {
@@ -20,6 +27,7 @@ public class LoginFragmentActivity extends Fragment {
     private Intent __nextActivity;
     private Drawable err_indiactor;
     boolean Allfill = false;
+
     public LoginFragmentActivity() {
 
         // Required empty public constructor
@@ -71,8 +79,7 @@ public class LoginFragmentActivity extends Fragment {
                 }
             }
         });
+
         return __view_login;
-
     }
-
 }
