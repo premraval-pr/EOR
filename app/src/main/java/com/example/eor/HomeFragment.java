@@ -17,17 +17,25 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class HomeFragment extends Fragment implements ItemListener_ExplorePostsActivity{
 
     RecyclerView __recylerView_mainRecyler;
     Button __button_Post;
+    List<ExplorePost_Model> list;
+    ExplorePost_DAO explorePost_dao;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inboxView = inflater.inflate(R.layout.fragment_home,container,false);
+        list = ExplorePost_DAO.list;
+        explorePost_dao=new ExplorePost_DAO();
+        explorePost_dao.collectData();
+        list=ExplorePost_DAO.list;
         __recylerView_mainRecyler=inboxView.findViewById(R.id.__recylerview_mainContent);
         __recylerView_mainRecyler.setLayoutManager(new LinearLayoutManager(getContext()));
-        __recylerView_mainRecyler.setAdapter(new PostAdapter_ExplorePostsActivity(this));
+        __recylerView_mainRecyler.setAdapter(new PostAdapter_ExplorePostsActivity(this,list));
         __button_Post = inboxView.findViewById(R.id.__button_postad);
 
         __button_Post.setOnClickListener(new View.OnClickListener() {

@@ -34,6 +34,9 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".UploadPostActivity" />
         <activity android:name=".BookActivity" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
