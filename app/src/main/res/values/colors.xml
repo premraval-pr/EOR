@@ -11,4 +11,5 @@
     <color name="__inputBackground">#EDF2F7</color>
     <color name="__shadow">#646466</color>
     <color name="__darkBackground">#66414141</color>
+    <color name="__lightgrey">#d3d3d3</color>
 </resources>

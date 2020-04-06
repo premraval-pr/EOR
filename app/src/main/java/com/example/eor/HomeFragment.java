@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HomeFragment extends Fragment implements ItemListener_ExplorePostsActivity{
 
     RecyclerView __recylerView_mainRecyler;
+    Button __button_Post;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +28,15 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
         __recylerView_mainRecyler=inboxView.findViewById(R.id.__recylerview_mainContent);
         __recylerView_mainRecyler.setLayoutManager(new LinearLayoutManager(getContext()));
         __recylerView_mainRecyler.setAdapter(new PostAdapter_ExplorePostsActivity(this));
+        __button_Post = inboxView.findViewById(R.id.__button_postad);
+
+        __button_Post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),UploadPostActivity.class);
+                startActivity(intent);
+            }
+        });
         return inboxView;
     }
 

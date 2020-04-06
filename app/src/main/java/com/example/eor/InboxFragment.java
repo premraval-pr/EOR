@@ -1,6 +1,7 @@
 package com.example.eor;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +25,14 @@ public class InboxFragment extends Fragment implements MessageListener{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inboxView = inflater.inflate(R.layout.fragment_inbox,container,false);
 
-        final MyMessagesDataAdapter myMessagesDataAdapter = new MyMessagesDataAdapter();
+        final MyMessagesDataAdapter myMessagesDataAdapter = new MyMessagesDataAdapter(this);
 
         messagerecyclerView = inboxView.findViewById(R.id.__recyclerview_messageView);
         messagerecyclerView.setHasFixedSize(true);
         messagerecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         messagerecyclerView.setAdapter(myMessagesDataAdapter);
+
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
             @Override
@@ -48,7 +51,7 @@ public class InboxFragment extends Fragment implements MessageListener{
 
     @Override
     public void ViewonClick(int pos) {
-        Toast t= Toast.makeText(getContext(),"Message: "+pos,Toast.LENGTH_SHORT);
-        t.show();
+        Intent intent = new Intent(getContext(),ChatActivity.class);
+        startActivity(intent);
     }
 }

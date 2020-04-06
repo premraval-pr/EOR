@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookActivity"
+    android:background="#fff">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/__constraintlayout_itemdetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/__textview_itemdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Details"
+            android:textSize="25sp"
+            android:textColor="@color/__textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_margin="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_itemimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__defaultimageicon"
+            app:layout_constraintStart_toStartOf="@id/__textview_itemdetails"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemdetails"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/__textview_itemtitle"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/__textview_itemtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Title"
+            android:textColor="@color/__textColor"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="@id/__imageview_itemimage"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage"
+            android:layout_marginLeft="35dp"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_usernameimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__personicon"
+            app:layout_constraintStart_toStartOf="@id/__textview_itemtitle"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage"
+            app:layout_constraintRight_toLeftOf="@id/__textview_username"
+            />
+
+        <TextView
+            android:id="@+id/__textview_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textColor="@color/__textColor"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_usernameimage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle"
+            app:layout_constraintRight_toLeftOf="@id/__imageview_locationimage"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_locationimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__locationicon"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/__textview_username"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle"
+            app:layout_constraintRight_toLeftOf="@id/__textview_location"
+            />
+
+        <TextView
+            android:id="@+id/__textview_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textColor="@color/__textColor"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_locationimage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/__textview_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__constraintlayout_itemdetails"
+        app:layout_constraintBottom_toTopOf="@id/__textview_calenderfrom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="25dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_calenderfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:padding="10dp"
+        android:textColor="@color/__textColor"
+        android:textColorHint="@color/__hintColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_from"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        android:backgroundTint="@color/__lightgrey"
+        android:background="@drawable/__roundbackground_edittext"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_calenderfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__calendaricon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        app:layout_constraintLeft_toRightOf="@id/__textview_calenderfrom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To"
+        android:textColor="@color/__textColor"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/__constraintlayout_itemdetails"
+        app:layout_constraintBottom_toTopOf="@id/__textview_calenderfrom"
+        app:layout_constraintLeft_toRightOf="@id/__textview_from"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_calenderto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:padding="10dp"
+        android:textColor="@color/__textColor"
+        android:textColorHint="@color/__hintColor"
+        android:backgroundTint="@color/__lightgrey"
+        app:layout_constraintStart_toStartOf="@id/__textview_to"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        android:background="@drawable/__roundbackground_edittext"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_calenderto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__calendaricon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from"
+        app:layout_constraintLeft_toRightOf="@id/__textview_calenderto"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_from"
+        app:layout_constraintTop_toBottomOf="@id/__textview_calenderfrom"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__textview_calenderfrom"
+        app:layout_constraintStart_toStartOf="@id/__textview_to"
+        app:layout_constraintLeft_toRightOf="@id/__textview_description"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_amounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$00.00"
+        android:textColor="@color/__textColor"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_amount"
+        app:layout_constraintStart_toStartOf="@id/__textview_amount"
+        />
+
+    <TextView
+        android:id="@+id/__textview_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total"
+        android:textColor="@color/__textColor"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_amounts"
+        app:layout_constraintStart_toStartOf="@id/__textview_description"
+        />
+
+    <TextView
+        android:id="@+id/__textview_totalamount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$00.00"
+        android:textColor="@color/__textColor"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_amounts"
+        app:layout_constraintStart_toStartOf="@id/__textview_amount"
+        />
+
+    <CheckBox
+        android:id="@+id/__checkbox_termsandcondition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/__button_choosepaymentmethod"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/__textColor"
+        android:text="I agree to all the terms and condition"
+        android:buttonTint="@color/__primaryColor"
+        />
+
+    <Button
+        android:id="@+id/__button_choosepaymentmethod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Payment Method"
+        android:textColor="@color/__primaryLightBackground"
+        android:background="@color/__primaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

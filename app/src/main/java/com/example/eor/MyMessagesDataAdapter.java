@@ -25,8 +25,8 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
     private ArrayList<MyMessagesData>  messagesData;
     private MessageListener messageListener;
 
-    public MyMessagesDataAdapter(ArrayList<MyMessagesData> messagesData) {
-        this.messagesData = messagesData;
+    public MyMessagesDataAdapter(MessageListener messagesListener) {
+        this.messageListener = messagesListener;
     }
 
     MyMessagesDataAdapter(){

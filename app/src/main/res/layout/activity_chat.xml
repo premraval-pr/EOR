@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity"
+    android:background="#fff">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__imageview_itemimage_chat"
+        android:src="@drawable/__defaultimageicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_itemtitle_chat"
+        android:text="Item Title"
+        android:textSize="30sp"
+        android:textColor="@color/__textColor"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage_chat"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__imageview_usernameimage_chat"
+        android:src="@drawable/__personicon"
+        app:layout_constraintStart_toStartOf="@id/__textview_itemtitle_chat"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_chat"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage_chat"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_username_chat"
+        android:text="Username"
+        android:textSize="15dp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_usernameimage_chat"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_chat"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__imageview_location_chat"
+        android:src="@drawable/__locationicon"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_chat"
+        app:layout_constraintLeft_toRightOf="@id/__textview_username_chat"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_location_chat"
+        android:text="Location"
+        android:textSize="15dp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_location_chat"
+        app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_chat"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_price_chat"
+        android:text="$10.00"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="8dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/__primaryLightBackground"
+        android:textSize="15sp"
+        android:backgroundTint="@color/__primaryColor"
+        android:background="@drawable/rectangle_shape_pricedisplay"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_itemimage_chat"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/__recycleview_chatlayout_chat"
+        app:layout_constraintTop_toBottomOf="@id/__textview_price_chat"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/__edittext_messagetype_chat"/>
+
+    <EditText
+        android:id="@+id/__edittext_messagetype_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:hint="Type here"
+        android:background="#fff"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+        android:drawableEnd="@drawable/__sendicon"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

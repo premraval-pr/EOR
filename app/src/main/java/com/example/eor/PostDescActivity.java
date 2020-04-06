@@ -34,7 +34,7 @@ public class PostDescActivity extends AppCompatActivity {
         bookbid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),TestPop.class));
+                startActivity(new Intent(getApplicationContext(),BookActivity.class));
             }
         });
 
