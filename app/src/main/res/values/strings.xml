@@ -6,4 +6,8 @@
         <item>Day</item>
         <item>Week</item>
     </string-array>
+    <string name="facebook_app_id">638735563351036</string>
+    <string name="fb_login_protocol_scheme">fb638735563351036</string>
+
+
 </resources>
