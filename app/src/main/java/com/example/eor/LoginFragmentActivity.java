@@ -27,7 +27,9 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -54,6 +56,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
     GoogleSignInAccount acct;
     CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
+    private GoogleSignInClient mGoogleSignInClient;
 
     public LoginFragmentActivity() {
 
@@ -73,6 +76,8 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
                 .addOnConnectionFailedListener(this)
                 .build();
         mGoogleApiClient.connect();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(getContext(),gso);
 
 
     }
@@ -195,7 +200,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
 
     }
 
-    private void updateUI(boolean signedIn) {
+    public void updateUI(boolean signedIn) {
         if (signedIn) {
             __button_signInWithGoogle_loginfragment.setVisibility(View.GONE);
             __button_logoutGoogle.setVisibility(View.VISIBLE);
@@ -234,11 +239,22 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
             if(acct.getAccount() != null) {
                 System.out.println(acct.getEmail());
                 System.out.println(acct.getDisplayName());
-                Intent nextactivity = new Intent(getActivity(), SlidingDrawerActivity.class);
-                nextactivity.putExtra("name", acct.getDisplayName());
-                nextactivity.putExtra("email", acct.getEmail());
-                startActivity(nextactivity);
-                Toast.makeText(getContext(), "Logged In: " + acct.getEmail(), Toast.LENGTH_SHORT).show();
+
+                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+                if(account!=null)
+                {
+                    Intent nextactivity = new Intent(getActivity(), SlidingDrawerActivity.class);
+                    nextactivity.putExtra("name", acct.getDisplayName());
+                    nextactivity.putExtra("email", acct.getEmail());
+                    startActivity(nextactivity);
+                    Toast.makeText(getContext(), "Logged In: " + acct.getEmail(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent nextactivity = new Intent(getActivity(), HomeFragment.class);
+                    startActivity(nextactivity);
+                }
+
             }
 
             // updateUI(true);
@@ -256,18 +272,17 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
         super.onStart();
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
-
-
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
         } else {
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
-
                     handleSignInResult(googleSignInResult);
                 }
             });
         }
     }
+
+
 }

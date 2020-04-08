@@ -21,9 +21,7 @@ public class ExtraCredentialsRegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extra_credentials_register_page);
 
-
-
-
+        
         __button_registerButton_extraCredentials = findViewById(R.id.__button_regsiter_ExtraCredentialsPage);
 
         __button_registerButton_extraCredentials.setOnClickListener(new View.OnClickListener() {

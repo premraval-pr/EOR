@@ -26,6 +26,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -253,11 +254,20 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
             if(acct.getAccount() != null)
                 System.out.println(acct.getEmail());
             System.out.println(acct.getDisplayName());
-            Intent nextactivity = new Intent(getActivity(),ExtraCredentialsRegisterPage.class);
-            nextactivity.putExtra("name",acct.getDisplayName());
-            nextactivity.putExtra("email",acct.getEmail());
-            startActivity(nextactivity);
-            Toast.makeText(getContext(),"Logged In: "+acct.getEmail(),Toast.LENGTH_SHORT).show();
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+            if(account!=null)
+            {
+                Intent nextactivity = new Intent(getActivity(), ExtraCredentialsRegisterPage.class);
+                nextactivity.putExtra("name", acct.getDisplayName());
+                nextactivity.putExtra("email", acct.getEmail());
+                startActivity(nextactivity);
+                Toast.makeText(getContext(), "Logged In: " + acct.getEmail(), Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Intent nextactivity = new Intent(getActivity(), HomeFragment.class);
+                startActivity(nextactivity);
+            }
 
             // updateUI(true);
         } else {
@@ -273,6 +283,9 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
     @Override
     public void onStart() {
         super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+// the GoogleSignInAccount will be non-null.
+
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
 

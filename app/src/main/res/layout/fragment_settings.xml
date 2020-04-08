@@ -4,17 +4,23 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/__primaryColor"
+    android:background="@color/__darkBackground"
     tools:context=".SettingsFragment">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Logout"
+        android:id="@+id/__button_logout"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:background="@drawable/layout_roundinputbackground"
+        android:backgroundTint="@color/__primaryColor"
+        android:textColor="#ffffff"
+        android:paddingHorizontal="35dp"
+        app:layout_constraintBottom_toTopOf="parent"
         />
 
 
