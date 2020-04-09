@@ -67,8 +67,9 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     public void onAuthenticationSucceeded(
             FingerprintManager.AuthenticationResult result) {
 
-        Intent __nextActivity = new Intent(context,SlidingDrawerActivity.class);
-        context.startActivity(__nextActivity);
+        Intent intent = new Intent(context, SlidingDrawerActivity.class);
+        intent.putExtra("user_id", "U0001");
+        context.startActivity(intent);
         Toast.makeText(context, "Success!", Toast.LENGTH_LONG).show();
     }
 

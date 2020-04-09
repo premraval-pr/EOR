@@ -2,15 +2,18 @@ package com.example.eor;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,18 +21,17 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.drawerlayout.widget.DrawerLayout;
+import java.util.Objects;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.widget.Toast;
-
-public class SlidingDrawerActivity extends AppCompatActivity{
+public class SlidingDrawerActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private boolean doubleBackToExitPressedOnce = false;
+    private NavController navController;
+    public static String USER_ID = "U0001";
+    private NavigationView navigationView;
+    private TextView header_name,header_email;
+    private ImageView header_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +39,39 @@ public class SlidingDrawerActivity extends AppCompatActivity{
         setContentView(R.layout.layout_sliding_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(getIntent().getStringExtra("user_id")!=null) USER_ID = getIntent().getStringExtra("user_id");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,R.id.nav_profile,R.id.nav_posts,
-                R.id.nav_history,R.id.nav_inbox,R.id.nav_social)
+                R.id.nav_home, R.id.nav_profile, R.id.nav_posts,
+                R.id.nav_history, R.id.nav_inbox, R.id.nav_social)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        header_name = header.findViewById(R.id.header_name);
+        header_email = header.findViewById(R.id.header_email);
+        setDetails();
+    }
+
+    private void setDetails() {
+        User_DAO user_dao = new User_DAO();
+        UserCredentials_Model loggedUser = user_dao.getUser(USER_ID);
+        String nameFormat = loggedUser.getUser_fname()+" "+loggedUser.getUser_lname();
+        header_name.setText(nameFormat);
+        header_email.setText(loggedUser.getUser_email());
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(getApplicationContext(),SettingsFragment.class));
+                startActivity(new Intent(getApplicationContext(), SettingsFragment.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -64,24 +80,32 @@ public class SlidingDrawerActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            Intent intent = new Intent(this, FirstActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("Exit me", true);
-            startActivity(intent);
-            finish();
-        }
-
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
+        if(Objects.requireNonNull(
+                Objects.requireNonNull(
+                        navController.getCurrentDestination()
+                ).getLabel()
+        ).toString().equals("Home")){
+            if (doubleBackToExitPressedOnce) {
+                Intent intent = new Intent(this, FirstActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Exit me", true);
+                startActivity(intent);
+                finish();
             }
-        }, 2000);
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 
     @Override

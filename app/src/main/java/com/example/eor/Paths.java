@@ -1,11 +1,7 @@
 package com.example.eor;
 
-public  class Paths
-{
-
-    public static final String retivreUrl="https://eor-master.000webhostapp.com/retrive.php";
-
-
-    public static final String retriveUsersUrl="https://eor-master.000webhostapp.com/UserCredentials.php";
-
+class Paths {
+    static final String retivreUrl = "https://eor-master.000webhostapp.com/retrive.php";
+    static final String retriveUsersUrl = "https://eor-master.000webhostapp.com/UserCredentials.php";
+    static final String userDetailsUrl = "http://eor-master.000webhostapp.com/userdetails.php";
 }

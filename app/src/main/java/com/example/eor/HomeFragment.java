@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
         return inboxView;
     }
 
+
     @Override
     public void onCLickPost(int position) {
         Intent intent = new Intent(getContext(),PostDescActivity.class);
