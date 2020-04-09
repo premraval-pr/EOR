@@ -73,11 +73,6 @@ public class SettingsFragment extends AppCompatActivity implements GoogleApiClie
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
 
 
     @Override

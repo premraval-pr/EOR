@@ -1,15 +1,29 @@
 package com.example.eor;
 
 
+import android.Manifest;
+import android.app.Dialog;
+import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyPermanentlyInvalidatedException;
+import android.security.keystore.KeyProperties;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,14 +52,29 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.Arrays;
+import java.util.Objects;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 
 public class LoginFragmentActivity extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
     private View __view_login;
     private Button __loginBtn;
-    private TextView __userName,__password;
+    private EditText __userName,__password;
     private Intent __nextActivity;
     private Drawable err_indiactor;
     boolean Allfill = false;
@@ -57,6 +86,14 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
     CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
+    private Dialog biometricDialog;
+    private static final String KEY_NAME = "yourKey";
+    private Cipher cipher;
+    private KeyStore keyStore;
+    private KeyGenerator keyGenerator;
+    private FingerprintManager.CryptoObject cryptoObject;
+    private FingerprintManager fingerprintManager;
+    private KeyguardManager keyguardManager;
 
     public LoginFragmentActivity() {
 
@@ -95,7 +132,11 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
     }
 
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        biometricDialog.dismiss();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,11 +149,10 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
         __loginBtn = __view_login.findViewById(R.id.__button_login);
         err_indiactor = getResources().getDrawable(R.drawable.__errorindicator);
 
+        biometricDialog = new Dialog(Objects.requireNonNull(getContext()));
+        Objects.requireNonNull(biometricDialog.getWindow()).requestFeature(Window.FEATURE_NO_TITLE);
+        biometricDialog.setContentView(R.layout.biometric);
         initiallizeControls();
-
-
-
-
         __button_signInWithGoogle_loginfragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,11 +161,94 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
             }
         });
 
+        __userName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(__userName.getText().toString().isEmpty() && __password.getText().toString().isEmpty()){
+                    __loginBtn.setText("Biometric");
+                }
+                else {
+                    __loginBtn.setText("Login");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        __password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(__userName.getText().toString().isEmpty() && __password.getText().toString().isEmpty()){
+                    __loginBtn.setText("Biometric");
+                }
+                else {
+                    __loginBtn.setText("Login");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
 
         __loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(__userName.getText().toString().isEmpty() && __password.getText().toString().isEmpty()){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        keyguardManager =
+                                (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
+                        fingerprintManager =
+                                (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+
+                        if (!fingerprintManager.isHardwareDetected()) {
+                            Toast.makeText(getContext(),"Your device doesn't support fingerprint authentication",Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(getContext(),"Please enable the fingerprint permission",Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (!fingerprintManager.hasEnrolledFingerprints()) {
+                            Toast.makeText(getContext(),"No fingerprint configured. Please register at least one fingerprint in your device's Settings",Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (!keyguardManager.isKeyguardSecure()) {
+                            Toast.makeText(getContext(),"Please enable lockscreen security in your device's Settings",Toast.LENGTH_SHORT).show();
+                        } else {
+                            try {
+                                generateKey();
+                            } catch (LoginFragmentActivity.FingerprintException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (initCipher()) {
+                                biometricDialog.show();
+                                cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                                FingerprintHandler helper = new FingerprintHandler(getContext());
+                                helper.startAuth(fingerprintManager, cryptoObject);
+                            }
+                        }
+                    }
+                }
                 if(__userName.getText().toString().isEmpty())
                 {
                     __userName.setCompoundDrawablesWithIntrinsicBounds(null, null, err_indiactor, null);
@@ -184,14 +307,6 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
 
             }
         });
-
-
-
-
-
-
-
-
         return __view_login;
     }
 
@@ -237,6 +352,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
             //Similarly you can get the email and photourl using acct.getEmail() and  acct.getPhotoUrl()
 
             if(acct.getAccount() != null) {
+
                 System.out.println(acct.getEmail());
                 System.out.println(acct.getDisplayName());
 
@@ -256,12 +372,6 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
                 }
 
             }
-
-            // updateUI(true);
-        } else {
-            // Signed out, show unauthenticated UI.
-            //updateUI(false);
-            Toast.makeText(getContext(),"No Accounts Signed in",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -284,5 +394,73 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void generateKey() throws FingerprintException {
+        try {
+            keyStore = KeyStore.getInstance("AndroidKeyStore");
+
+            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+
+            keyStore.load(null);
+
+            keyGenerator.init(new
+
+                    KeyGenParameterSpec.Builder(KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT |
+                            KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+
+                    .setUserAuthenticationRequired(true)
+                    .setEncryptionPaddings(
+                            KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .build());
+
+            keyGenerator.generateKey();
+
+        } catch (KeyStoreException
+                | NoSuchAlgorithmException
+                | NoSuchProviderException
+                | InvalidAlgorithmParameterException
+                | CertificateException
+                | IOException exc) {
+            exc.printStackTrace();
+            throw new FingerprintException(exc);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean initCipher() {
+        try {
+            cipher = Cipher.getInstance(
+                    KeyProperties.KEY_ALGORITHM_AES + "/"
+                            + KeyProperties.BLOCK_MODE_CBC + "/"
+                            + KeyProperties.ENCRYPTION_PADDING_PKCS7);
+        } catch (NoSuchAlgorithmException |
+                NoSuchPaddingException e) {
+            throw new RuntimeException("Failed to get Cipher", e);
+        }
+
+        try {
+            keyStore.load(null);
+            SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME,
+                    null);
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            return true;
+        } catch (KeyPermanentlyInvalidatedException e) {
+
+            //Return false if cipher initialization failed//
+            return false;
+        } catch (KeyStoreException | CertificateException
+                | UnrecoverableKeyException | IOException
+                | NoSuchAlgorithmException | InvalidKeyException e) {
+            throw new RuntimeException("Failed to init Cipher", e);
+        }
+    }
+
+    private static class FingerprintException extends Exception {
+        FingerprintException(Exception e) {
+            super(e);
+        }
+    }
 
 }

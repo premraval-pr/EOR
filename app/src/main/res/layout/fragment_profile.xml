@@ -1,19 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/__primaryLightBackground">
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/__imageview_ProfileImage_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/edit_page_toggle"
+        app:layout_constraintVertical_bias="0.1"/>
+
+    <EditText
+        android:id="@+id/__edittext_fname_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="John Doe"
+        android:textSize="30sp"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_ProfileImage_profile"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/location"
+        android:id="@+id/__imageview_locationimage_profile"
+        app:layout_constraintTop_toBottomOf="@id/__edittext_fname_profile"
+        app:layout_constraintRight_toLeftOf="@id/__edittext_location_profile"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__edittext_location_profile"
+        android:text="Toronto"
+        android:textSize="15sp"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+
+        app:layout_constraintTop_toTopOf="@id/__imageview_locationimage_profile"
+        app:layout_constraintBottom_toBottomOf="@id/__imageview_locationimage_profile"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:id="@+id/__textview_contactdetail_profile"
+        android:text="Contact Details"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
         android:textColor="@color/__textColor"
-        android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/__edittext_location_profile"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:id="@+id/__edittext_email_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="john.doe@example.com"
+        android:textSize="15sp"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toTopOf="@id/__imageview_emailimage_profile"
+        app:layout_constraintBottom_toBottomOf="@id/__imageview_emailimage_profile"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_emailimage_profile" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__imageview_emailimage_profile"
+        android:src="@drawable/email"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/__textview_contactdetail_profile"
+        app:layout_constraintRight_toLeftOf="@id/__edittext_email_profile"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext_phonenumber_profile"
+        android:text="+1(647)123-4567"
+        android:textSize="15sp"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toTopOf="@id/__imageview_phoneimage_profile"
+        app:layout_constraintBottom_toBottomOf="@id/__imageview_phoneimage_profile"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_phoneimage_profile"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__imageview_phoneimage_profile"
+        android:src="@drawable/phone"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_emailimage_profile"
+        app:layout_constraintRight_toLeftOf="@id/edittext_phonenumber_profile"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_paymentinfo_profile"
+        android:text="Payment Information"
+        android:textSize="20sp"
+        android:textColorHint="@color/__hintColor"
+        android:textColor="@color/__textColor"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_phoneimage_profile"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/__constraint_layout2_profile"
+        app:layout_constraintTop_toBottomOf="@id/__textview_paymentinfo_profile"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/_layout_cardview_rectangle_profile"
+        android:layout_marginEnd="60dp">
+
+        <ImageView
+            android:id="@+id/__imageview_typecard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/ic_visa"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/__imageview_chip"
+            android:src="@drawable/__cardchip"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+        <TextView
+            android:id="@+id/__textview_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/__imageview_chip"
+            android:text="4515 6549 3694 4745"
+            android:textColor="#fff"
+            android:fontFamily="@font/ocr"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/__imageview_chip"/>
+
+        <TextView
+            android:id="@+id/__textview_goodthru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GOOD\nTHRU"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/__textview_card"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/__textview_expdate"
+            android:text="01/23"
+            android:textColor="#fff"
+            app:layout_constraintTop_toTopOf="@id/__textview_goodthru"
+            app:layout_constraintBottom_toBottomOf="@id/__textview_goodthru"
+            app:layout_constraintLeft_toRightOf="@id/__textview_goodthru"
+            android:layout_marginStart="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/__textview_cardholder"
+            android:text="JOHN DOE"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#fff"
+            android:paddingBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/__textview_goodthru"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="@id/__imageview_chip"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_page_toggle"
+        android:textOff="Edit"
+        android:background="#3080E8"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="EDIT"
+        android:textColor="#fff"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
