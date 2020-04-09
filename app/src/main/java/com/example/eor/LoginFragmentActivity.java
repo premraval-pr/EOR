@@ -72,9 +72,11 @@ import javax.crypto.SecretKey;
 
 public class LoginFragmentActivity extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
 
+    UserCredentials_DAO userCredentials_dao = new UserCredentials_DAO();
     private View __view_login;
     private Button __loginBtn;
     private EditText __userName,__password;
+    private TextView __credError;
     private Intent __nextActivity;
     private Drawable err_indiactor;
     boolean Allfill = false;
@@ -148,6 +150,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
         __password = __view_login.findViewById(R.id.__edittext_password_signin);
         __loginBtn = __view_login.findViewById(R.id.__button_login);
         err_indiactor = getResources().getDrawable(R.drawable.__errorindicator);
+        __credError = __view_login.findViewById(R.id.__textview_credentialsError_signin);
 
         biometricDialog = new Dialog(Objects.requireNonNull(getContext()));
         Objects.requireNonNull(biometricDialog.getWindow()).requestFeature(Window.FEATURE_NO_TITLE);
@@ -274,11 +277,26 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
 
                 }
 
+
                 if(Allfill)
                 {
-                    __nextActivity = new Intent(getContext(),SlidingDrawerActivity.class);
-                    __nextActivity.putExtra("data",__userName.getText().toString());
-                    startActivity(__nextActivity);
+                    userCredentials_dao.collectData();
+                    String answer = userCredentials_dao.authenticateCredetials(__userName.getText().toString(),__password.getText().toString());
+
+                    if (answer == "-1")
+                    {
+                        __credError.setText("Email and Password doesn't match");
+                        __userName.setFocusable(true);
+                        __password.setText("");
+                    }
+                    else
+                    {
+                        __credError.setText("");
+                        Intent intent = new Intent(getContext(),SlidingDrawerActivity.class);
+                        intent.putExtra("user_id",answer);
+                        System.out.println("User Id: "+answer);
+                        startActivity(intent);
+                    }
                 }
 
 
