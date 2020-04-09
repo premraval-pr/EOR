@@ -2,6 +2,7 @@ package com.example.eor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
     Button __button_Post;
     List<ExplorePost_Model> list;
     ExplorePost_DAO explorePost_dao;
+
+    Button __button_filter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,9 +50,25 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
                 startActivity(intent);
             }
         });
+
+        __button_filter = inboxView.findViewById(R.id.__button_filter);
+
+        __button_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FilterFragment filterFragment = new FilterFragment();
+                filterFragment.setEnterTransition(new Slide());
+                filterFragment.setReturnTransition(new Slide());
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.__constraintlayout_mainscreen_filter,filterFragment);
+                __button_Post.setVisibility(View.GONE);
+                __button_filter.setVisibility(View.GONE);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         return inboxView;
     }
-
     @Override
     public void onCLickPost(int position) {
         Intent intent = new Intent(getContext(),PostDescActivity.class);
