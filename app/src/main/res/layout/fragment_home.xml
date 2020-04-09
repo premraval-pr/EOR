@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#fff"
+    android:id="@+id/__constraintlayout_mainscreen_filter">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/__recylerview_mainContent"
@@ -34,6 +35,22 @@
         android:paddingBottom="5dp"
         android:textColor="#fff"
         />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/__viewpager_pager_filter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        tools:context=".MainActivity"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:id="@+id/__button_filter"
+        android:background="@drawable/layout_roundbackground_half"
+        android:backgroundTint="@color/__primaryDarkBackground"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
