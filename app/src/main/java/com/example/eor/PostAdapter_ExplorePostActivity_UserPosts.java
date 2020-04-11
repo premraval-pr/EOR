@@ -34,7 +34,7 @@ public class PostAdapter_ExplorePostActivity_UserPosts extends RecyclerView.Adap
     @Override
     public void onBindViewHolder(@NonNull VH holder,final int position) {
 
-        holder.__textview_itemTitle.setText(list.get(position).getId());
+        holder.__textview_itemTitle.setText(list.get(position).getTitle());
         holder.__textview_userName.setText(list.get(position).getUsername());
         holder.__textview_location.setText(list.get(position).getLocation());
         holder.__textview_price.setText(String.valueOf(list.get(position).getPrice()));
@@ -81,9 +81,6 @@ public class PostAdapter_ExplorePostActivity_UserPosts extends RecyclerView.Adap
             __textview_location=itemView.findViewById(R.id.__textview_userpost_location);
             __textview_price=itemView.findViewById(R.id.__textview_userpost_price);
             __imageview_post=itemView.findViewById(R.id.__imageview_userpost_defaultimage);
-
-
-
         }
     }
 }
