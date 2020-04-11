@@ -20,6 +20,8 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
 
     List<ExplorePost_Model> list;
     ItemListener_ExplorePostsActivity iL;
+    public static String post_id="";
+
     public PostAdapter_ExplorePostsActivity(ItemListener_ExplorePostsActivity iL, List<ExplorePost_Model> list)
     {
         this.iL=iL;
@@ -44,7 +46,7 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
     public void onBindViewHolder(@NonNull final  PostAdapter_ExplorePostsActivity.VH holder, final int position)
     {
 
-        holder.__textview_itemTitle.setText(list.get(position).getId());
+        holder.__textview_itemTitle.setText(list.get(position).getTitle());
         holder.__textview_userName.setText(list.get(position).getUsername());
         holder.__textview_location.setText(list.get(position).getLocation());
         holder.__textview_price.setText(String.valueOf(list.get(position).getPrice()));
@@ -62,6 +64,7 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
             @Override
             public void onClick(View v) {
                 iL.onCLickPost(position);
+                post_id=list.get(position).getId();
             }
         });
 

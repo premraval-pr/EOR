@@ -2,6 +2,16 @@ package com.example.eor;
 
 public class ExplorePost_Model {
     String id;
+    String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     String username;
     String location;
     String image_path;
@@ -58,8 +68,9 @@ public class ExplorePost_Model {
         this.price = price;
     }
 
-    public ExplorePost_Model(String id, String username, String location, String image_path, double price) {
+    public ExplorePost_Model(String id, String title,String username, String location, String image_path, double price) {
         this.id = id;
+        this.title=title;
         this.username = username;
         this.location = location;
         this.image_path =image_path;

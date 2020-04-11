@@ -10,19 +10,28 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ImageViewPageAdapter extends PagerAdapter {
+
+    PostDescription_Model postDescription_model;
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.whatsapp, R.drawable.whatsappp,R.drawable.whatsapppp};
+    public List<String> images;
 
     public ImageViewPageAdapter(Context context) {
         this.context = context;
+
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        images=PostDescription_DAO.image_post;
+        return images.size();
     }
 
     @Override
@@ -37,8 +46,7 @@ public class ImageViewPageAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.activity_imageview,null);
         ImageView imageView = view.findViewById(R.id.__imageview_sliderimage);
-        imageView.setImageResource(images[position]);
-
+        Picasso.with(context).load(images.get(position)).into(imageView);
         ViewPager viewPager = (ViewPager) container;
         viewPager.addView(view,0);
         return view;
