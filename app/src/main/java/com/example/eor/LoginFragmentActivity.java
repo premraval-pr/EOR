@@ -277,7 +277,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
                         __credError.setText("");
                         Intent intent = new Intent(getContext(), SlidingDrawerActivity.class);
                         intent.putExtra("user_id", answer);
-                        System.out.println("User Id: " + answer);
+
                         startActivity(intent);
                     }
                 }
@@ -354,8 +354,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
 
             if (acct.getAccount() != null) {
 
-                System.out.println(acct.getEmail());
-                System.out.println(acct.getDisplayName());
+
 
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
                 if (account != null) {
