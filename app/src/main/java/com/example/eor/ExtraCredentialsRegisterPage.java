@@ -147,18 +147,18 @@ public class ExtraCredentialsRegisterPage extends AppCompatActivity {
 
 
 
-                    nameValuePairs.add(new BasicNameValuePair("firstname", fname));
-                    nameValuePairs.add(new BasicNameValuePair("lastname", lname));
-                    nameValuePairs.add(new BasicNameValuePair("street", "default"));
-                    nameValuePairs.add(new BasicNameValuePair("aptno", "default"));
-                    nameValuePairs.add(new BasicNameValuePair("city", "default"));
-                    nameValuePairs.add(new BasicNameValuePair("state", "default"));
-                    nameValuePairs.add(new BasicNameValuePair("postal", "default"));
-                    nameValuePairs.add(new BasicNameValuePair("contact", cont));
-                    nameValuePairs.add(new BasicNameValuePair("gender", gender));
-                    nameValuePairs.add(new BasicNameValuePair("useremail", useremail));
-                    nameValuePairs.add(new BasicNameValuePair("displayname", string_displayname));
-                    nameValuePairs.add(new BasicNameValuePair("password", string_password));
+                    nameValuePairs.add(new BasicNameValuePair("firstname", fname.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("lastname", lname.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("street", "none"));
+                    nameValuePairs.add(new BasicNameValuePair("aptno", "none"));
+                    nameValuePairs.add(new BasicNameValuePair("city", "none"));
+                    nameValuePairs.add(new BasicNameValuePair("state", "none"));
+                    nameValuePairs.add(new BasicNameValuePair("postal", "none"));
+                    nameValuePairs.add(new BasicNameValuePair("contact", cont.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("gender", gender.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("useremail", useremail.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("displayname", string_displayname.trim()));
+                    nameValuePairs.add(new BasicNameValuePair("password", string_password.trim()));
 
                     httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                     HttpResponse response = httpClient.execute(httpPost);
