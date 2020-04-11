@@ -46,7 +46,7 @@ public class ExplorePost_DAO {
             {
 
                 JSONObject jsonObject=ja.getJSONObject(i);
-                list.add(new ExplorePost_Model(jsonObject.getString("title"),jsonObject.getString("username"),jsonObject.getString("location"),jsonObject.getString("image_eor"),jsonObject.getDouble("price")));
+                list.add(new ExplorePost_Model(jsonObject.getString("id"),jsonObject.getString("title"),jsonObject.getString("username"),jsonObject.getString("location"),jsonObject.getString("image_eor"),jsonObject.getDouble("price")));
                 System.out.println(list.get(i).toString());
             }
 

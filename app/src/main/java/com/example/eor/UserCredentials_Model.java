@@ -1,6 +1,6 @@
 package com.example.eor;
 
-public class UserCredentials_Model
+public class  UserCredentials_Model
 {
     String user_id,user_fname, user_lname, user_street, user_apt_num, user_city, user_state, user_postalcode;
 

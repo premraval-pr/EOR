@@ -106,6 +106,79 @@
                     android:layout_marginTop="10dp"
                     />
 
+                <TextView
+                    android:id="@+id/__textview_postavailablefrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_itemdescription"
+                    app:layout_constraintStart_toStartOf="@id/__textview_itemdescription"
+                    android:text="Post available from:"
+                    android:textColor="@color/__textColor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/__textview_postavailablefromview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/yyyy"
+                    android:textColor="@color/__textColor"
+                    android:textColorHint="@color/__textColor"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_itemdescription"
+                    app:layout_constraintLeft_toRightOf="@id/__textview_postavailablefrom"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/__textview_postavailableto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Post available To:"
+                    android:textColor="@color/__textColor"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_postavailablefrom"
+                    app:layout_constraintStart_toStartOf="@id/__textview_postavailablefrom"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/__textview_postavailabletoview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/yyyy"
+                    android:textColor="@color/__textColor"
+                    android:textColorHint="@color/__textColor"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_postavailablefrom"
+                    app:layout_constraintLeft_toRightOf="@id/__textview_postavailableto"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/__textview_postcreated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Post Created On:"
+                    android:textColor="@color/__textColor"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_postavailableto"
+                    app:layout_constraintStart_toStartOf="@id/__textview_postavailableto"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/__textview_postcreatedview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/MM/yyyy"
+                    android:textColor="@color/__textColor"
+                    android:textColorHint="@color/__textColor"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_postavailableto"
+                    app:layout_constraintLeft_toRightOf="@id/__textview_postcreated"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    />
+
                 <Button
                     android:id="@+id/__button_bookbid"
                     android:layout_width="wrap_content"
@@ -115,8 +188,9 @@
                     android:layout_marginTop="15dp"
                     android:paddingHorizontal="50dp"
                     android:backgroundTint="@color/__primaryColor"
-                    app:layout_constraintTop_toBottomOf="@id/__textview_itemdescription"
+                    app:layout_constraintTop_toBottomOf="@id/__textview_postcreated"
                     app:layout_constraintStart_toStartOf="@id/__textview_itemdescription"
+                    app:layout_constraintBottom_toTopOf="@id/__button_reply"
                     android:background="@drawable/__roundbackground"
                     />
     <Button
