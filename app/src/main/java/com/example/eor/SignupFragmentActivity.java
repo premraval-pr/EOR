@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,9 +48,11 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
     View __view_signupinflator;
     Button signupbutton;
     Drawable err_indiactor;
-    EditText firstname,lastname,email,contactno,displayname,pw,cpw;
-    boolean s_firstname,s_lastname,s_email,s_address,s_contactno,s_displayname,s_pw,s_cpw;
+    EditText firstname,lastname,email,contactno,displayname;
+    boolean s_firstname,s_lastname,s_email,s_address,s_contactno,s_displayname;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    RadioGroup __gender_radioGroup;
+    RadioButton __radiobutton_male,__radiobutton_female,__radiobutton_other;
     AutoCompleteTextView autoCompleteTextViewAddress;
     SignInButton __button_signInWithGoogle_loginfragment;
     LoginButton __button_signInWithFacebook_loginfragment;
@@ -57,6 +61,7 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
     GoogleSignInAccount acct;
     public static CallbackManager callbackManager;
     private static final int RC_SIGN_IN = 1;
+    String radioSex;
 
     public SignupFragmentActivity() {
 
@@ -113,7 +118,7 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         __view_signupinflator=inflater.inflate(R.layout.layout_signupfragment, container, false);
@@ -138,6 +143,28 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
         firstname = __view_signupinflator.findViewById(R.id.__edittext_firstname);
         lastname = __view_signupinflator.findViewById(R.id.__edittext_lastname);
         email = __view_signupinflator.findViewById(R.id.__edittext_email);
+        __gender_radioGroup = __view_signupinflator.findViewById(R.id.__radiogroup_radioSex);
+
+        __radiobutton_male = __view_signupinflator.findViewById(R.id.__radiobutton_radio_male);
+        __radiobutton_female = __view_signupinflator.findViewById(R.id.__radiobutton_radio_female);
+        __radiobutton_other = __view_signupinflator.findViewById(R.id.__radiobutton_radio_other);
+
+
+
+        if(__radiobutton_male.isChecked())
+        {
+            radioSex = "M";
+        }
+        else if(__radiobutton_female.isChecked())
+        {
+            radioSex = "F";
+        }
+        else
+        {
+            radioSex = "O";
+        }
+
+
         contactno = __view_signupinflator.findViewById(R.id.__edittext_contact);
         displayname = __view_signupinflator.findViewById(R.id.__edittext_displayname);
         autoCompleteTextViewAddress.setAdapter(new PlaceAutoSuggestAdapter(getContext(),android.R.layout.simple_list_item_1));
@@ -197,6 +224,12 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
                     {
                         removeErrorLogoFromAll();
                         Intent i = new Intent(getContext(),ExtraCredentialsRegisterPage.class);
+                        i.putExtra("firstname",firstname.getText().toString());
+                        i.putExtra("lastname",lastname.getText().toString());
+                        i.putExtra("address",autoCompleteTextViewAddress.getText().toString());
+                        i.putExtra("contact",contactno.getText().toString());
+                        i.putExtra("radioSex",radioSex);
+                        i.putExtra("email",email.getText().toString());
                         startActivity(i);
                     }
 
