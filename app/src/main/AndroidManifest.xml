@@ -67,6 +67,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsFragment" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
