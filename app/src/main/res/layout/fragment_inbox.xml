@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/__recyclerview_messageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
