@@ -32,6 +32,7 @@ public class SlidingDrawerActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView header_name,header_email;
     private ImageView header_image;
+    public static UserCredentials_Model loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +57,17 @@ public class SlidingDrawerActivity extends AppCompatActivity {
 
         header_name = header.findViewById(R.id.header_name);
         header_email = header.findViewById(R.id.header_email);
+        header_image = header.findViewById(R.id.header_image);
         setDetails();
     }
 
     private void setDetails() {
         User_DAO user_dao = new User_DAO();
-        UserCredentials_Model loggedUser = user_dao.getUser(USER_ID);
+        loggedUser = user_dao.getUser(USER_ID);
         String nameFormat = loggedUser.getUser_fname()+" "+loggedUser.getUser_lname();
         header_name.setText(nameFormat);
         header_email.setText(loggedUser.getUser_email());
+        if(loggedUser.getUser_email().equals("premraval.pr@gmail.com")) header_image.setImageResource(R.drawable.prem_1);
     }
 
     @Override

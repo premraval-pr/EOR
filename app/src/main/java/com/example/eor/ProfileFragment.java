@@ -5,28 +5,51 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class ProfileFragment extends Fragment {
-    EditText Name,email,phone;
-    TextView Edit_btn;
+    private EditText Name,email,phone,location;
+    private TextView Edit_btn,Card_Name;
+    private UserCredentials_Model loggedUser;
+    private ImageView profile_image;
+    private View inboxView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inboxView = inflater.inflate(R.layout.fragment_profile,container,false);
+        inboxView = inflater.inflate(R.layout.fragment_profile,container,false);
         Name = inboxView.findViewById(R.id.__edittext_fname_profile);
         email = inboxView.findViewById(R.id.__edittext_email_profile);
         phone = inboxView.findViewById(R.id.edittext_phonenumber_profile);
         Edit_btn = inboxView.findViewById(R.id.edit_page_toggle);
+        location = inboxView.findViewById(R.id.__edittext_location_profile);
+        Card_Name = inboxView.findViewById(R.id.__textview_cardholder);
+        profile_image = inboxView.findViewById(R.id.__imageview_ProfileImage_profile);
+
         Name.setEnabled(false);
         email.setEnabled(false);
         phone.setEnabled(false);
+        loggedUser = SlidingDrawerActivity.loggedUser;
+
+
+        String NameFormat = loggedUser.getUser_fname() + " " + loggedUser.getUser_lname();
+
+        Name.setText(NameFormat);
+        email.setText(loggedUser.getUser_email());
+
+        if(loggedUser.getUser_email().equals("premraval.pr@gmail.com")) profile_image.setImageResource(R.drawable.prem_1);
+
+        String ContactFormat = "(" + loggedUser.getUser_contact().substring(0,3) + ") "
+                + loggedUser.getUser_contact().substring(3,6) + "-"
+                + loggedUser.getUser_contact().substring(6);
+        phone.setText(ContactFormat);
+        location.setText(loggedUser.getUser_city());
+        Card_Name.setText(NameFormat);
 
         Edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +71,11 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
         return inboxView;
+
+
+
+
     }
 }

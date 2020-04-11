@@ -2,17 +2,16 @@ package com.example.eor;
 
 class Chat {
 
-    String Chat;
-    int usericon;
-    boolean isMe;
+    String Chat,userid;
+    long timecreated;
 
     public Chat() {
     }
 
-    public Chat(String chat, int usericon, boolean isMe) {
-        Chat = chat;
-        this.usericon = usericon;
-        this.isMe = isMe;
+    public Chat(String chat, String userid,long time) {
+        this.Chat = chat;
+        this.userid = userid;
+        this.timecreated = time;
     }
 
     public String getChat() {
@@ -23,28 +22,13 @@ class Chat {
         Chat = chat;
     }
 
-    public int getUsericon() {
-        return usericon;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setUsericon(int usericon) {
-        this.usericon = usericon;
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
-    public boolean isMe() {
-        return isMe;
-    }
-
-    public void setMe(boolean me) {
-        isMe = me;
-    }
-
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "Chat='" + Chat + '\'' +
-                ", usericon=" + usericon +
-                ", isMe=" + isMe +
-                '}';
-    }
+    public long getTimecreated(){ return timecreated; }
 }
