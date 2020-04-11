@@ -62,22 +62,22 @@ public class FilterFragment extends Fragment {
             }
         });
         final EditText __edittextFromDate = __view_filter.findViewById(R.id.__edittext_dateFrom_filter);
-        __edittextFromDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-                picker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        __edittextFromDate.setText(dayOfMonth+"/"+(month+1)+"/"+year);
-                    }
-                },year,month,day);
-                picker.show();
-            }
-        });
+            __edittextFromDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Calendar cldr = Calendar.getInstance();
+                    int day = cldr.get(Calendar.DAY_OF_MONTH);
+                    int month = cldr.get(Calendar.MONTH);
+                    int year = cldr.get(Calendar.YEAR);
+                    picker = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            __edittextFromDate.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                        }
+                    },year,month,day);
+                    picker.show();
+                }
+            });
 
 
 
