@@ -1,7 +1,16 @@
 package com.example.eor;
 
+import android.os.AsyncTask;
 import android.os.StrictMode;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,7 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExplorePost_DAO {
+public class ExplorePost_UserPost_DAO extends AsyncTask<Void,Void,Void> {
 
     String s;
 
@@ -26,20 +35,22 @@ public class ExplorePost_DAO {
             list=new ArrayList<>();
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            URL url=new URL(Paths.retivreUrl);
-            HttpURLConnection httpURLConnection= (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setDoInput(true);
-            httpURLConnection.setDoOutput(true);
-            InputStream inputStream=httpURLConnection.getInputStream();
-            BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+            List<NameValuePair> nameValuePairs = new ArrayList<>();
+            nameValuePairs.add(new BasicNameValuePair("userid",SlidingDrawerActivity.USER_ID));
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(Paths.retiveUsersposts);
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            BufferedReader bufferedReader = new BufferedReader(new
+                    InputStreamReader(entity.getContent()));
             StringBuilder stringBuilder=new StringBuilder();
             while ((line = bufferedReader.readLine())!=null)
             {
                 stringBuilder.append(line+"\n");
             }
             result=stringBuilder.toString();
-
+            System.out.println(result);
             JSONArray ja=new JSONArray(result);
 
             for(int i=0;i<ja.length();i++)
@@ -52,12 +63,17 @@ public class ExplorePost_DAO {
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println(e+"Hello");
         }
 
 
     }
 
+    @Override
+    protected Void doInBackground(Void... voids) {
+        collectData();
+        return null;
+    }
 }
 
 

@@ -5,43 +5,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
+public class PostAdapter_ExplorePostActivity_UserPosts extends RecyclerView.Adapter<PostAdapter_ExplorePostActivity_UserPosts.VH> {
 
-
-public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostAdapter_ExplorePostsActivity.VH>
-{
-
-    List<ExplorePost_Model> list;
     ItemListener_ExplorePostsActivity iL;
-    public PostAdapter_ExplorePostsActivity(ItemListener_ExplorePostsActivity iL, List<ExplorePost_Model> list)
+    List<ExplorePost_Model> list;
+    View vw;
+
+    public PostAdapter_ExplorePostActivity_UserPosts(ItemListener_ExplorePostsActivity iL, List<ExplorePost_Model> list)
     {
         this.iL=iL;
-        this.list =ExplorePost_DAO.list;
+        this.list =ExplorePost_UserPost_DAO.list;
     }
+
 
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_explorepostsitem,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_user_post,parent,false);
         VH vh=new VH(view);
         return vh;
     }
 
     @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final  PostAdapter_ExplorePostsActivity.VH holder, final int position)
-    {
+    public void onBindViewHolder(@NonNull VH holder,final int position) {
 
         holder.__textview_itemTitle.setText(list.get(position).getId());
         holder.__textview_userName.setText(list.get(position).getUsername());
@@ -63,8 +54,15 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
                 iL.onCLickPost(position);
             }
         });
-
     }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+
+
 
     public class VH extends RecyclerView.ViewHolder
     {
@@ -75,16 +73,15 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
         TextView __textview_price;
         ImageView __imageview_post;
 
-
-
         public VH(@NonNull View itemView) {
             super(itemView);
 
-            __textview_itemTitle=itemView.findViewById(R.id.__textview_itemtitle);
-            __textview_userName=itemView.findViewById(R.id.__textview_username);
-            __textview_location=itemView.findViewById(R.id.__textview_location);
-            __textview_price=itemView.findViewById(R.id.__textview_price);
-            __imageview_post=itemView.findViewById(R.id.__imageview_defaultimage);
+            __textview_itemTitle=itemView.findViewById(R.id.__textview_userpost_itemtitle);
+            __textview_userName=itemView.findViewById(R.id.__textview_userpost_username);
+            __textview_location=itemView.findViewById(R.id.__textview_userpost_location);
+            __textview_price=itemView.findViewById(R.id.__textview_userpost_price);
+            __imageview_post=itemView.findViewById(R.id.__imageview_userpost_defaultimage);
+
 
 
         }
