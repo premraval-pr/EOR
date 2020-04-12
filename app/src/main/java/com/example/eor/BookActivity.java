@@ -58,6 +58,7 @@ public class BookActivity extends AppCompatActivity {
         mycalendarFrom.set(Calendar.MONTH,Calendar.APRIL);
         mycalendarFrom.set(Calendar.DAY_OF_MONTH,4);
 
+
         final DatePickerDialog dateFrom = new DatePickerDialog(BookActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

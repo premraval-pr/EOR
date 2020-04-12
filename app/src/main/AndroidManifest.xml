@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ExtraCredentialsRegisterPage"></activity>
+        <activity android:name=".ExtraCredentialsRegisterPage"/>
         <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,13 +32,13 @@
         <activity
             android:name=".SlidingDrawerActivity"
             android:label="Drawer"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar"/>
         <activity android:name=".ToolbarActivity" />
         <activity android:name=".ReviewFragment" />
         <activity android:name=".PostDescActivity" />
         <activity android:name=".TestPop" />
         <activity android:name=".ReplyPop" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".ChatActivity" android:windowSoftInputMode="adjustPan" />
         <activity android:name=".UploadPostActivity" />
         <activity android:name=".BookActivity" />
 

@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -44,7 +45,8 @@ public class ChatActivity extends AppCompatActivity {
         ChatRecyclerView = findViewById(R.id.__recycleview_chatlayout_chat);
         chatAdapter = new ChatAdapter(this,chatArrayList);
         ChatRecyclerView.setAdapter(chatAdapter);
-        ChatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        ChatRecyclerView.setLayoutManager(linearLayoutManager);
         etMessage = findViewById(R.id.__edittext_messagetype_chat);
         send = findViewById(R.id.__imageview_send);
 
@@ -55,9 +57,7 @@ public class ChatActivity extends AppCompatActivity {
                 sendMessage(etMessage.getText().toString());
             }
         });
-
         loadChat();
-
     }
 
     private void sendMessage(final String message) {
@@ -70,13 +70,12 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(),"Meeage Not Sent",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Message Not Sent",Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -100,6 +99,7 @@ public class ChatActivity extends AppCompatActivity {
                                 chatArrayList.add(new Chat(snapshot.getString("chat"),snapshot.getString("userid"),snapshot.getLong("timecreated")));
                             }
                             chatAdapter.notifyDataSetChanged();
+                            chatAdapter.notifyItemInserted(chatArrayList.size());
                         }
                     }
                 });

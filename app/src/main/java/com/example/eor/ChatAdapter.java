@@ -43,7 +43,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         holder.ChatDescription.setText(mData.get(position).getChat());
-
+        if(mData.get(position).getUserid().equals("U0013"))
+            holder.imageView.setImageResource(R.drawable.prem_1);
+        else
+            holder.imageView.setImageResource(R.drawable.__default_user);
     }
 
     @Override
@@ -55,10 +58,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
         TextView ChatDescription;
         View view;
+        ImageView imageView;
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ChatDescription = itemView.findViewById(R.id.__textview_description_chat);
+            imageView = itemView.findViewById(R.id.__imageview_usericonimage_chat);
             view = itemView;
         }
     }
