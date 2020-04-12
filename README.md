@@ -1,2 +1,37 @@
-# EOR
-EOR is an abbreviation of Everything on Rent. This is a tentative name for the application. This Application allows users to add multiple products from multiple categories on rent. On the other hand, it also allows clients to search for required products to rent. The concept behind this application is to change the liabilities of your household to your asset so even if you are sitting in your home or doing your job, your assets can go and earn you some extra money and vice-versa a you can just rent a product, which you only need to use once, and not buy it saving your money.
+## Welcome to GitHub Pages
+
+You can use the [editor on GitHub](https://github.com/premraval-pr/EOR/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+### Markdown
+
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+```markdown
+Syntax highlighted code block
+
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](url) and ![Image](src)
+```
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+### Jekyll Themes
+
+Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/premraval-pr/EOR/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+
+### Support or Contact
+
+Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
