@@ -7,4 +7,5 @@ class Paths {
     static final String retiveUsersposts="https://eor-master.000webhostapp.com/retrive_userposts.php";
     static final String postDescriptionURL = "http://eor-master.000webhostapp.com/postdescription.php";
     static final String userRegistrationUrl = "https://eor-master.000webhostapp.com/UserRegistration.php";
+    static final String uploadPost="https://eor-master.000webhostapp.com/upload_posts.php";
 }
