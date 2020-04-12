@@ -1,17 +1,55 @@
 package com.example.eor;
 
+import java.util.Date;
+
 public class HistoryLayout {
 
-    private String title,username,location;
+    private String title,username,location, postId;
+    String toDate,fromDate;
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
+
+    public String getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public HistoryLayout(String title, String username, String location, String postId, String toDate, String fromDate) {
+        this.title = title;
+        this.username = username;
+        this.location = location;
+        this.postId = this.postId;
+        this.toDate = toDate;
+        this.fromDate = fromDate;
+    }
 
     public HistoryLayout() {
 
     }
 
-    public HistoryLayout(String title, String username, String location) {
+    public HistoryLayout(String title, String username, String location, String toDate, String fromDate) {
         this.title = title;
         this.username = username;
         this.location = location;
+        this.toDate = toDate;
+        this.fromDate = fromDate;
     }
 
     public String getTitle() {

@@ -123,6 +123,7 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
 
         __button_signInWithFacebook_loginfragment = __view_login.findViewById(R.id.__button_loginwithfacebook);
         __button_signInWithFacebook_loginfragment.setReadPermissions(Arrays.asList("public_profile", "user_birthday"));
+        __button_signInWithFacebook_loginfragment.setFragment(this);
 
         __button_signInWithGoogle_loginfragment = __view_login.findViewById(R.id.__button_loginwithgoogle);
 
@@ -293,6 +294,10 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Toast.makeText(getContext(), "Facebook Logged In with " + loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
+
+                        Intent nextactivity = new Intent(getActivity(), SlidingDrawerActivity.class);
+                        startActivity(nextactivity);
+                        Toast.makeText(getContext(), "Logged In: " +loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

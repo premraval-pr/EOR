@@ -1,19 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/__primaryLightBackground"
-    tools:context=".ReviewFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/__constraintlayout_itemdetails_reviewPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/__textview_itemdetails_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Review"
+            android:textSize="25sp"
+            android:textColor="@color/__textColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_margin="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_itemimage_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__defaultimageicon"
+            app:layout_constraintStart_toStartOf="@id/__textview_itemdetails_reviewPage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemdetails_reviewPage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/__textview_itemtitle_reviewPage"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:id="@+id/__textview_itemtitle_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item Title"
+            android:textColor="@color/__textColor"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="@id/__imageview_itemimage_reviewPage"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage_reviewPage"
+            android:layout_marginLeft="35dp"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_usernameimage_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__personicon"
+            app:layout_constraintStart_toStartOf="@id/__textview_itemtitle_reviewPage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_reviewPage"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_itemimage_reviewPage"
+            app:layout_constraintRight_toLeftOf="@id/__textview_username_reviewPage"
+            />
+
+        <TextView
+            android:id="@+id/__textview_username_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textColor="@color/__textColor"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_usernameimage_reviewPage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_reviewPage"
+            app:layout_constraintRight_toLeftOf="@id/__imageview_locationimage_reviewPage"
+            />
+
+        <ImageView
+            android:id="@+id/__imageview_locationimage_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/__locationicon"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintLeft_toRightOf="@id/__textview_username_reviewPage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_reviewPage"
+            app:layout_constraintRight_toLeftOf="@id/__textview_location_reviewPage"
+            />
+
+        <TextView
+            android:id="@+id/__textview_location_reviewPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textColor="@color/__textColor"
+            app:layout_constraintLeft_toRightOf="@id/__imageview_locationimage_reviewPage"
+            app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_reviewPage"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/__textview_from_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:textSize="15sp"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__constraintlayout_itemdetails_reviewPage"
+        app:layout_constraintBottom_toTopOf="@id/__textview_calenderfrom_reviewPage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_margin="25dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_calenderfrom_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:padding="10dp"
+        android:textColor="@color/__textColor"
+        android:textColorHint="@color/__hintColor"
+        app:layout_constraintStart_toStartOf="@id/__textview_from_reviewPage"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from_reviewPage"
+        android:backgroundTint="@color/__lightgrey"
+        android:background="@drawable/__roundbackground_edittext"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_calenderfrom_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__calendaricon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from_reviewPage"
+        app:layout_constraintLeft_toRightOf="@id/__textview_calenderfrom_reviewPage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_to_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To"
+        android:textColor="@color/__textColor"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/__constraintlayout_itemdetails_reviewPage"
+        app:layout_constraintBottom_toTopOf="@id/__textview_calenderfrom_reviewPage"
+        app:layout_constraintLeft_toRightOf="@id/__textview_from_reviewPage"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_calenderto_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yyyy"
+        android:padding="10dp"
+        android:textColor="@color/__textColor"
+        android:textColorHint="@color/__hintColor"
+        android:backgroundTint="@color/__lightgrey"
+        app:layout_constraintStart_toStartOf="@id/__textview_to_reviewPage"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from_reviewPage"
+        android:background="@drawable/__roundbackground_edittext"
+        />
+
+    <ImageView
+        android:id="@+id/__imageview_calenderto_reviewPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__calendaricon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_from_reviewPage"
+        app:layout_constraintLeft_toRightOf="@id/__textview_calenderto_reviewPage"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        />
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Review"
+        android:text="Give a rating"
+        android:id="@+id/__textview_heading_giveareview_reviewPage"
         android:textColor="@color/__textColor"
-        android:textSize="40sp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/__textview_calenderto_reviewPage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/__ratingbar_review"/>
+
+
+
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/__ratingbar_review"
+        android:numStars="5"
+        android:saveEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/__textview_heading_giveareview_reviewPage"
+        android:layout_marginTop="30dp"
+        android:progressTint="@color/__primaryColor"
+        android:progressBackgroundTint="@color/__lightgrey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write a Review"
+        android:id="@+id/__textview_heading_writeareview_reviewPage"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__ratingbar_review"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@id/__edittext_writeareview"/>
+
+    <EditText
+        android:id="@+id/__edittext_writeareview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/__roundbackground_edittext_minimumadius"
+        app:layout_constraintTop_toBottomOf="@id/__textview_heading_writeareview_reviewPage"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:hint="Write your reviews here..."
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/__textColor"
+        android:textAlignment="center"
+        android:textColorHint="@color/__hintColor"
+        android:layout_marginTop="30dp"
+        android:lines="4" />
+
+    <Button
+        android:id="@+id/__button_submitreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Review"
+
+        android:textColor="@color/__primaryLightBackground"
+        android:background="@color/__primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

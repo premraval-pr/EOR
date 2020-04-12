@@ -17,8 +17,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     ItemListener itemListener;
     ViewHolder changeholder = null;
     boolean open = false;
+    private ArrayList<HistoryLayout> historyList;
 
-    public HistoryAdapter(ItemListener listener) {
+    public HistoryAdapter(ArrayList<HistoryLayout> historyList,
+                          ItemListener listener) {
+        this.historyList = historyList;
         this.itemListener = listener;
     }
 
@@ -32,9 +35,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        holder.itemTitleTV.setText("Item Title - "+position);
-        holder.userNameTV.setText("Username - "+position);
-        holder.locationTV.setText("Location - "+position);
+
+        HistoryLayout historyLayout = historyList.get(position);
+        holder.itemTitleTV.setText(historyLayout.getTitle());
+        holder.userNameTV.setText(historyLayout.getUsername());
+        holder.locationTV.setText(historyLayout.getLocation());
+        holder.fromTV.setText(historyLayout.getFromDate().toString());
+        holder.toTV.setText(historyLayout.getToDate().toString());
         holder.dropDownImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +92,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 30;
+        return 3;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
