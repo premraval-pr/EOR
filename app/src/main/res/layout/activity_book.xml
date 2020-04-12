@@ -187,6 +187,43 @@
         />
 
     <TextView
+        android:id="@+id/__textview_postDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Post Description"
+        android:textColorHint="@color/__textColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__textview_description"
+        app:layout_constraintStart_toStartOf="@id/__textview_description"
+        android:layout_marginVertical="10dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Tax"
+        android:textColorHint="@color/__textColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toBottomOf="@id/__textview_postDescription"
+        app:layout_constraintStart_toStartOf="@id/__textview_postDescription"
+        android:layout_marginVertical="10dp"
+        />
+
+    <TextView
+        android:id="@+id/__textview_taxxamount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="$00.00"
+        android:textColorHint="@color/__textColor"
+        android:textColor="@color/__textColor"
+        app:layout_constraintTop_toTopOf="@id/__textview_tax"
+        app:layout_constraintLeft_toRightOf="@id/__textview_tax"
+        app:layout_constraintBottom_toBottomOf="@id/__textview_tax"
+        app:layout_constraintStart_toStartOf="@id/__textview_amount"
+        />
+
+    <TextView
         android:id="@+id/__textview_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -198,6 +235,7 @@
         app:layout_constraintLeft_toRightOf="@id/__textview_description"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="30dp"
+
         />
 
     <TextView
@@ -207,7 +245,8 @@
         android:text="$00.00"
         android:textColor="@color/__textColor"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/__textview_amount"
+        app:layout_constraintTop_toTopOf="@id/__textview_postDescription"
+        app:layout_constraintBottom_toBottomOf="@id/__textview_postDescription"
         app:layout_constraintStart_toStartOf="@id/__textview_amount"
         />
 
@@ -218,8 +257,9 @@
         android:text="Total"
         android:textColor="@color/__textColor"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/__textview_amounts"
+        app:layout_constraintTop_toBottomOf="@id/__textview_tax"
         app:layout_constraintStart_toStartOf="@id/__textview_description"
+        android:layout_marginVertical="10dp"
         />
 
     <TextView
@@ -229,8 +269,9 @@
         android:text="$00.00"
         android:textColor="@color/__textColor"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/__textview_amounts"
+        app:layout_constraintTop_toTopOf="@id/__textview_total"
         app:layout_constraintStart_toStartOf="@id/__textview_amount"
+        app:layout_constraintBottom_toBottomOf="@id/__textview_total"
         />
 
     <CheckBox
