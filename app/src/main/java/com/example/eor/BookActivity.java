@@ -51,12 +51,12 @@ public class BookActivity extends AppCompatActivity {
         dateFrom = findViewById(R.id.__textview_calenderfrom);
         dateTo = findViewById(R.id.__textview_calenderto);
 
-        Intent intentFromPostDesc = getIntent();
+        final Intent intentFromPostDesc = getIntent();
         itemTitle.setText(intentFromPostDesc.getStringExtra("ItemTitle"));
         userName.setText(intentFromPostDesc.getStringExtra("UserName"));
         userLocation.setText(intentFromPostDesc.getStringExtra("Location"));
         postDesc.setText(intentFromPostDesc.getStringExtra("ItemTitle"));
-        double price = intentFromPostDesc.getDoubleExtra("PostAmount",0);
+        final double price = intentFromPostDesc.getDoubleExtra("PostAmount",0);
         double tax = price*0.13;
         double total = price+tax;
         postAmount.setText("$"+String.valueOf(price));
@@ -176,11 +176,14 @@ public class BookActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(termsandContionCheckBox.isChecked())
                 {
-                    paymentButton.setEnabled(true);
+                    Intent payIntent = new Intent(getApplicationContext(),CheckoutActivity.class);
+                    payIntent.putExtra("title",itemTitle.getText().toString());
+                    payIntent.putExtra("image",intentFromPostDesc.getStringExtra("ImageString"));
+                    payIntent.putExtra("price",String.valueOf(price));
+                    startActivity(payIntent);
                 }
                 else
                 {
-                    paymentButton.setEnabled(false);
                     Toast.makeText(BookActivity.this, "Please agree to the terms and condition above!", Toast.LENGTH_SHORT).show();
                 }
             }

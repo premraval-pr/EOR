@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ import com.google.android.gms.common.api.Status;
 
 public class SettingsFragment extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
-    Button __button_logout_google;
+    TextView __button_logout_google;
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions gso;
 
@@ -64,6 +65,7 @@ public class SettingsFragment extends AppCompatActivity implements GoogleApiClie
                     private void gotoMainActivity() {
                         finish();
                         Intent intent = new Intent(getApplicationContext(),FirstActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

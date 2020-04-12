@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
         <activity android:name=".ExtraCredentialsRegisterPage"/>
         <activity android:name=".FirstActivity">
             <intent-filter>
@@ -33,7 +36,6 @@
             android:name=".SlidingDrawerActivity"
             android:label="Drawer"
             android:theme="@style/NoActionBar"/>
-        <activity android:name=".ToolbarActivity" />
         <activity android:name=".ReviewFragment" />
         <activity android:name=".PostDescActivity" />
         <activity android:name=".TestPop" />
@@ -67,6 +69,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsFragment" />
+        <activity android:name=".CheckoutActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

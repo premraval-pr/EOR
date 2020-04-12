@@ -99,6 +99,7 @@ public class UploadPostActivity extends AppCompatActivity {
         {
             imageURI = data.getData();
             uploadImage.setImageURI(imageURI);
+            uploadImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
             try {
                 Bitmap bitmap1= MediaStore.Images.Media.getBitmap(getContentResolver(),imageURI);
                 bitmap=bitmap1;
@@ -107,9 +108,6 @@ public class UploadPostActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
     private static String imagetoString(Bitmap bmp)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
@@ -119,6 +117,10 @@ public class UploadPostActivity extends AppCompatActivity {
     }
 
     public void uploadPost(View view) {
+        Toast.makeText(getApplicationContext(),"Your post has been created",Toast.LENGTH_SHORT).show();
         post_dao.SendDatatoServer(new UploadPost_Model(imagetoString(bitmap),posttitle.getText().toString(),postdescription.getText().toString(),rent_price.getText().toString()));
+        Intent intent = new Intent(getApplicationContext(),SlidingDrawerActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
