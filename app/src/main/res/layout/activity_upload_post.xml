@@ -168,6 +168,7 @@
         android:textColor="#fff"
         android:background="@color/__primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="uploadPost"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
