@@ -50,7 +50,6 @@ public class ExplorePost_UserPost_DAO extends AsyncTask<Void,Void,Void> {
                 stringBuilder.append(line+"\n");
             }
             result=stringBuilder.toString();
-            System.out.println(result);
             JSONArray ja=new JSONArray(result);
 
             for(int i=0;i<ja.length();i++)

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements ItemListener_ExplorePostsActivity{
@@ -27,7 +31,11 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
     RecyclerView __recylerView_mainRecyler;
     Button __button_Post;
     List<ExplorePost_Model> list;
+    List<ExplorePost_Model> filteredlist = new ArrayList<ExplorePost_Model>();
     ExplorePost_DAO explorePost_dao;
+    PostAdapter_ExplorePostsActivity postAdapter_explorePostsActivity;
+
+
 
     Button __button_filter;
     @Nullable
@@ -38,9 +46,11 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
         explorePost_dao=new ExplorePost_DAO();
         explorePost_dao.collectData();
         list=ExplorePost_DAO.list;
+
         __recylerView_mainRecyler=inboxView.findViewById(R.id.__recylerview_mainContent);
         __recylerView_mainRecyler.setLayoutManager(new LinearLayoutManager(getContext()));
-        __recylerView_mainRecyler.setAdapter(new PostAdapter_ExplorePostsActivity(this,list));
+        postAdapter_explorePostsActivity = new PostAdapter_ExplorePostsActivity(this,list);
+        __recylerView_mainRecyler.setAdapter(postAdapter_explorePostsActivity);
         __button_Post = inboxView.findViewById(R.id.__button_postad);
 
         __button_Post.setOnClickListener(new View.OnClickListener() {
@@ -75,4 +85,5 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
         Intent intent = new Intent(getContext(),PostDescActivity.class);
         startActivity(intent);
     }
+
 }

@@ -45,7 +45,6 @@ public class PostAdapter_ExplorePostActivity_UserPosts extends RecyclerView.Adap
         else {
             Picasso.with(holder.itemView.getContext()).load(list.get(position).image_path).resize(200, 200).
                     centerCrop().into(holder.__imageview_post);
-            System.out.println(list.get(position).getImage_path());
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

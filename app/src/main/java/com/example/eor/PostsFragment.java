@@ -20,6 +20,9 @@ public class PostsFragment extends Fragment implements ItemListener_ExplorePosts
     ItemListener_ExplorePostsActivity __itemListener;
     List<ExplorePost_Model> list;
     ExplorePost_UserPost_DAO explorePost_dao;
+
+    List<ExplorePost_Model> filteredList = new ArrayList<ExplorePost_Model>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
