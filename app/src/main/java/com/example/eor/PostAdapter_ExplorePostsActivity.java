@@ -12,21 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostAdapter_ExplorePostsActivity.VH>
 {
-
     List<ExplorePost_Model> list;
     ItemListener_ExplorePostsActivity iL;
     public static String post_id="";
+
+
+
 
     public PostAdapter_ExplorePostsActivity(ItemListener_ExplorePostsActivity iL, List<ExplorePost_Model> list)
     {
         this.iL=iL;
         this.list =ExplorePost_DAO.list;
     }
+
+
+
 
     @NonNull
     @Override
@@ -56,7 +62,6 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
         else {
             Picasso.with(holder.itemView.getContext()).load(list.get(position).image_path).resize(200, 200).
                     centerCrop().into(holder.__imageview_post);
-            System.out.println(list.get(position).getImage_path());
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +73,10 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
         });
 
     }
+
+
+
+
 
     public class VH extends RecyclerView.ViewHolder
     {
@@ -92,4 +101,5 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
 
         }
     }
+
 }

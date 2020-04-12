@@ -36,7 +36,6 @@ public class User_DAO {
             for(int i=0;i<ja.length();i++)
             {
                 JSONObject jsonObject1=ja.getJSONObject(i);
-                System.out.println(jsonObject1.getString("user_id"));
                 return new UserCredentials_Model(jsonObject1.getString("user_id"),jsonObject1.getString("user_fname"),jsonObject1.getString("user_lname"),
                         jsonObject1.getString("user_street"),jsonObject1.getString("user_apt_num"),jsonObject1.getString("user_city"),
                         jsonObject1.getString("user_state"),jsonObject1.getString("user_postal_code"),jsonObject1.getString("user_contact"),
