@@ -49,13 +49,12 @@ public class PostDescription_DAO {
                 JSONObject jsonObject1 = ja.getJSONObject(i);
                 System.out.println(jsonObject1.getString("post_id"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-
                 Date dateFrom = sdf.parse(jsonObject1.getString("post_available_from").substring(0,10));
                 Date dateTo = sdf.parse(jsonObject1.getString("post_available_to").substring(0,10));
                 Date dateCreated = sdf.parse(jsonObject1.getString("post_created").substring(0,10));
                 image_post.add(jsonObject1.getString("image_link"));
                 System.out.println("Images "+image_post.size());
+
                 return new PostDescription_Model(jsonObject1.getString("post_id"), jsonObject1.getString("post_title"),
                         jsonObject1.getString("post_description"), jsonObject1.getString("post_price"),dateFrom
                         , dateTo, dateCreated, jsonObject1.getString("image_link"), jsonObject1.getString("user_fname"), jsonObject1.getString("user_city"));

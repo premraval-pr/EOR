@@ -14,13 +14,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class PostDescActivity extends AppCompatActivity {
 
     Button bookbid, reply;
     ViewPager viewPager;
     TextView textViewPostDesc, textViewPostTitle, textViewPostPrice, textViewPostAvailableFrom, textViewPostAvailableTo, textViewPostCreatedOn, textViewUserName, textViewLocation;
-
+    PostDescription_Model postDescription_model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,27 @@ public class PostDescActivity extends AppCompatActivity {
         bookbid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),BookActivity.class));
+                Intent intentBooking = new Intent(getApplicationContext(),BookActivity.class);
+                intentBooking.putExtra("ItemTitle",textViewPostTitle.getText().toString());
+                intentBooking.putExtra("UserName",textViewUserName.getText().toString());
+                intentBooking.putExtra("Location",textViewLocation.getText().toString());
+                intentBooking.putExtra("PostDescription",textViewPostDesc.getText().toString());
+                intentBooking.putExtra("PostAmount",Double.parseDouble(postDescription_model.getPostPrice()));
+                intentBooking.putExtra("ImageString",PostDescription_DAO.image_post.get(0));
+
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFrom = postDescription_model.getPostFrom();
+                String dateFromString = df.format(dateFrom);
+                System.out.println(dateFromString);
+                intentBooking.putExtra("DateFrom",dateFromString);
+
+                DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateTo = postDescription_model.getPostTo();
+                String dateToString = df1.format(dateTo);
+                System.out.println(dateToString);
+                intentBooking.putExtra("DateTo",dateToString);
+
+                startActivity(intentBooking);
             }
         });
 
@@ -60,14 +81,13 @@ public class PostDescActivity extends AppCompatActivity {
     public void setPostDescription() {
 
         PostDescription_DAO postDescription_dao = new PostDescription_DAO();
-        PostDescription_Model postDescription_model = postDescription_dao.getPost(PostAdapter_ExplorePostsActivity.post_id);
+        postDescription_model = postDescription_dao.getPost(PostAdapter_ExplorePostsActivity.post_id);
         textViewPostTitle.setText(postDescription_model.getPostTitle());
         textViewPostPrice.setText("$ " + postDescription_model.getPostPrice());
         textViewPostDesc.setText(postDescription_model.getPostDescription());
         textViewPostAvailableFrom.setText(postDescription_model.getPostFrom().toString().substring(4,10)+postDescription_model.getPostFrom().toString().substring(23,28));
         textViewPostAvailableTo.setText(postDescription_model.getPostTo().toString().substring(4,10)+postDescription_model.getPostTo().toString().substring(23,28));
         textViewPostCreatedOn.setText(postDescription_model.getPostCreated().toString().substring(4,10)+postDescription_model.getPostCreated().toString().substring(23,28));
-//        viewPager.setAdapter(postDescription_model.getImagePath());
         viewPager = findViewById(R.id.__imageview_postimage);
         ImageViewPageAdapter imageViewPageAdapter = new ImageViewPageAdapter(this);
         viewPager.setAdapter(imageViewPageAdapter);

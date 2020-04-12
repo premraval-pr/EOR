@@ -1,6 +1,7 @@
 package com.example.eor;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +13,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.squareup.picasso.Picasso;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class BookActivity extends AppCompatActivity {
 
-    TextView calFrom, calTo;
-    ImageView image_calFrom, image_calTo;
+    TextView calFrom, calTo, userName, itemTitle, userLocation, postDesc, postAmount, postTotalAmount, taxAmount, dateFrom, dateTo;
+    ImageView image_calFrom, image_calTo, image_post;
     Calendar mycalendarFrom = Calendar.getInstance();
     Calendar mycalendarTo = Calendar.getInstance();
 
@@ -33,12 +40,58 @@ public class BookActivity extends AppCompatActivity {
         calTo = findViewById(R.id.__textview_calenderto);
         image_calFrom = findViewById(R.id.__imageview_calenderfrom);
         image_calTo = findViewById(R.id.__imageview_calenderto);
+        userName = findViewById(R.id.__textview_username);
+        itemTitle = findViewById(R.id.__textview_itemtitle);
+        userLocation = findViewById(R.id.__textview_location);
+        postDesc = findViewById(R.id.__textview_postDescription);
+        postAmount = findViewById(R.id.__textview_amounts);
+        postTotalAmount = findViewById(R.id.__textview_totalamount);
+        taxAmount = findViewById(R.id.__textview_taxxamount);
+        image_post=findViewById(R.id.__imageview_itemimage);
+        dateFrom = findViewById(R.id.__textview_calenderfrom);
+        dateTo = findViewById(R.id.__textview_calenderto);
+
+        Intent intentFromPostDesc = getIntent();
+        itemTitle.setText(intentFromPostDesc.getStringExtra("ItemTitle"));
+        userName.setText(intentFromPostDesc.getStringExtra("UserName"));
+        userLocation.setText(intentFromPostDesc.getStringExtra("Location"));
+        postDesc.setText(intentFromPostDesc.getStringExtra("ItemTitle"));
+        double price = intentFromPostDesc.getDoubleExtra("PostAmount",0);
+        double tax = price*0.13;
+        double total = price+tax;
+        postAmount.setText("$"+String.valueOf(price));
+        taxAmount.setText("$"+String.valueOf(tax));
+        postTotalAmount.setText("$"+String.valueOf(total));
+        Picasso.with(this).load(intentFromPostDesc.getStringExtra("ImageString")).resize(200,200).centerCrop().into(image_post);
+        //from
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date dateFromCal = null;
+        try {
+            dateFromCal = sdf.parse(intentFromPostDesc.getStringExtra("DateFrom").substring(0,10));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat newsdf = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(newsdf.format(dateFromCal));
+        //dateFrom.setText(newsdf.format(dateFromCal));
+        //to
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date dateToCal = null;
+        try {
+            dateToCal = sdf1.parse(intentFromPostDesc.getStringExtra("DateTo").substring(0,10));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat newsdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(newsdf1.format(dateToCal));
+        //dateTo.setText(newsdf1.format(dateToCal));
+
 
         //Calendar To
 
-        mycalendarTo.set(Calendar.YEAR,2020);
-        mycalendarTo.set(Calendar.MONTH,Calendar.APRIL);
-        mycalendarTo.set(Calendar.DAY_OF_MONTH,9);
+        mycalendarTo.set(Calendar.YEAR,dateToCal.getYear());
+        mycalendarTo.set(Calendar.MONTH,dateToCal.getMonth());
+        mycalendarTo.set(Calendar.DAY_OF_MONTH,dateToCal.getDay());
 
         final DatePickerDialog datetoDailog = new DatePickerDialog(BookActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -54,9 +107,9 @@ public class BookActivity extends AppCompatActivity {
 //*********************************************************************************************************************************//
         //Calendar From
 
-        mycalendarFrom.set(Calendar.YEAR,2020);
-        mycalendarFrom.set(Calendar.MONTH,Calendar.APRIL);
-        mycalendarFrom.set(Calendar.DAY_OF_MONTH,4);
+        mycalendarFrom.set(Calendar.YEAR,dateFromCal.getYear());
+        mycalendarFrom.set(Calendar.MONTH,dateFromCal.getMonth());
+        mycalendarFrom.set(Calendar.DAY_OF_MONTH,dateFromCal.getDay());
 
         final DatePickerDialog dateFrom = new DatePickerDialog(BookActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -69,12 +122,12 @@ public class BookActivity extends AppCompatActivity {
                 mintodate.set(Calendar.YEAR,year);
                 mintodate.set(Calendar.MONTH,month);
                 mintodate.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                datetoDailog.getDatePicker().setMinDate(mintodate.getTime().getTime());
+                datetoDailog.getDatePicker().setMinDate(mintodate.getTimeInMillis());
             }
         },mycalendar.get(Calendar.YEAR),mycalendar.get(Calendar.MONTH),mycalendar.get(Calendar.DAY_OF_MONTH));
 
-        dateFrom.getDatePicker().setMinDate(mycalendarFrom.getTime().getTime());
-        dateFrom.getDatePicker().setMaxDate(mycalendarTo.getTime().getTime());
+        dateFrom.getDatePicker().setMinDate(mycalendarFrom.getTimeInMillis());
+        dateFrom.getDatePicker().setMaxDate(mycalendarTo.getTimeInMillis());
 
         //On Click Listner FROM
         calFrom.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +145,7 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
-        datetoDailog.getDatePicker().setMaxDate(mycalendarTo.getTime().getTime());
+        datetoDailog.getDatePicker().setMaxDate(mycalendarTo.getTimeInMillis());
 
         //On Click Listner TO
         //calTo.setEnabled(false);
