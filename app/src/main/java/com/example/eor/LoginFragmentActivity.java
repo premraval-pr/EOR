@@ -358,9 +358,6 @@ public class LoginFragmentActivity extends Fragment implements GoogleApiClient.O
             //Similarly you can get the email and photourl using acct.getEmail() and  acct.getPhotoUrl()
 
             if (acct.getAccount() != null) {
-
-
-
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
                 if (account != null) {
                     Intent nextactivity = new Intent(getActivity(), SlidingDrawerActivity.class);
