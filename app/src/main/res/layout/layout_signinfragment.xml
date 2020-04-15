@@ -48,6 +48,7 @@
             android:id="@+id/__edittext_password_signin"
             android:textSize="20sp"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textColorHint="@color/__hintColor"
             android:textColor="@color/__textColor"
             android:backgroundTint="@color/__inputBackground"
@@ -118,14 +119,29 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/__constraintlayout__googleFB"
             app:layout_constraintTop_toBottomOf="@id/__textview_OR1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <include layout="@layout/login_facebook_google"/>
+            <include layout="@layout/login_facebook_google" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swipe to Register >>"
+            android:id="@+id/__textview_SwipeToRegister"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"
+            android:textColor="@color/__textColor"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/__constraintlayout__googleFB"
+            app:layout_constraintRight_toRightOf="parent"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

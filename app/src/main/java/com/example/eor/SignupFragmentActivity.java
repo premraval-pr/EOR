@@ -176,7 +176,8 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
                 s_email = email.getText().toString().isEmpty();
                 s_address = autoCompleteTextViewAddress.getText().toString().isEmpty();
 
-                s_contactno = contactno.getText().toString().isEmpty();
+                s_contactno = contactno.getText().toString().isEmpty() || contactno.getText().toString().length()!=14;
+
 
 
                 if(firstname.getText().toString().isEmpty())
@@ -202,20 +203,22 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
                 }
                 else if(autoCompleteTextViewAddress.getText().toString().isEmpty())
                 {
+                    email.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
                     autoCompleteTextViewAddress.setCompoundDrawablesWithIntrinsicBounds(null, null, err_indiactor, null);
                     autoCompleteTextViewAddress.setError("Address Empty",err_indiactor);
-                    email.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
                     autoCompleteTextViewAddress.requestFocus();
                 }
-                else if(contactno.getText().toString().isEmpty())
+                else if(s_contactno != false)
                 {
+
                     contactno.setCompoundDrawablesWithIntrinsicBounds(null, null, err_indiactor, null);
-                    contactno.setError("Contact Number Empty",err_indiactor);
+                    contactno.setError("Contact Number NOT VALID",err_indiactor);
                     autoCompleteTextViewAddress.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
                     contactno.requestFocus();
                 }
                 else
                 {
+
                     removeErrorLogoFromAll();
                 }
 
