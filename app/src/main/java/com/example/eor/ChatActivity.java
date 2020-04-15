@@ -1,8 +1,10 @@
 package com.example.eor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,16 +17,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.DocumentTransform;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -56,8 +58,6 @@ public class ChatActivity extends AppCompatActivity {
         ChatRecyclerView.setLayoutManager(linearLayoutManager);
         etMessage = findViewById(R.id.__edittext_messagetype_chat);
         send = findViewById(R.id.__imageview_send);
-
-
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,18 +73,23 @@ public class ChatActivity extends AppCompatActivity {
         db.collection("chats")
                 .document(demoChat)
                 .collection("messages")
-                .add(new Chat(message,loggedUSer,System.currentTimeMillis()))
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                    }
-                })
+                .add(new Chat(message,loggedUSer, Timestamp.now()))
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getApplicationContext(),"Message Not Sent",Toast.LENGTH_SHORT).show();
                     }
                 });
+        etMessage.setText("");
+        hideKeyBoard();
+    }
+
+    public void hideKeyBoard() {
+        View view = this.getCurrentFocus();
+        if(view!= null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private void loadChat(){
@@ -103,7 +108,7 @@ public class ChatActivity extends AppCompatActivity {
                         if(queryDocumentSnapshots!=null){
                             chatArrayList.clear();
                             for (DocumentSnapshot snapshot : queryDocumentSnapshots){
-                                chatArrayList.add(new Chat(snapshot.getString("chat"),snapshot.getString("userid"),snapshot.getLong("timecreated")));
+                                chatArrayList.add(new Chat(snapshot.getString("chat"),snapshot.getString("userid"),snapshot.getTimestamp("timecreated")));
                             }
                             chatAdapter.notifyDataSetChanged();
                             chatAdapter.notifyItemInserted(chatArrayList.size());

@@ -95,9 +95,6 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
         __button_signInWithFacebook_loginfragment.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
-
-
                 Toast.makeText(getContext(), "Login Success with facebook", Toast.LENGTH_SHORT).show();
             }
 
@@ -167,7 +164,9 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
 
         contactno = __view_signupinflator.findViewById(R.id.__edittext_contact);
         displayname = __view_signupinflator.findViewById(R.id.__edittext_displayname);
+
         autoCompleteTextViewAddress.setAdapter(new PlaceAutoSuggestAdapter(getContext(),android.R.layout.simple_list_item_1));
+
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -298,15 +297,13 @@ public class SignupFragmentActivity extends Fragment implements GoogleApiClient.
             }
             else
             {
-                Intent nextactivity = new Intent(getActivity(), HomeFragment.class);
-                startActivity(nextactivity);
+                Toast.makeText(getContext(), "Google Sign In Error. Try Again" + acct.getEmail(), Toast.LENGTH_SHORT).show();
             }
 
             // updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
             //updateUI(false);
-            Toast.makeText(getContext(),"No Accounts Signed in",Toast.LENGTH_LONG).show();
         }
     }
 

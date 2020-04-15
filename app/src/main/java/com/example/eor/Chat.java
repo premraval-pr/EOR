@@ -1,14 +1,16 @@
 package com.example.eor;
 
+import com.google.firebase.Timestamp;
+
 class Chat {
 
     String Chat,userid;
-    long timecreated;
+    Timestamp timecreated;
 
     public Chat() {
     }
 
-    public Chat(String chat, String userid,long time) {
+    public Chat(String chat, String userid,Timestamp time) {
         this.Chat = chat;
         this.userid = userid;
         this.timecreated = time;
@@ -30,5 +32,5 @@ class Chat {
         this.userid = userid;
     }
 
-    public long getTimecreated(){ return timecreated; }
+    public Timestamp getTimecreated(){ return timecreated; }
 }

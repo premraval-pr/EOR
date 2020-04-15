@@ -6,8 +6,10 @@
         <item>Day</item>
         <item>Week</item>
     </string-array>
-    <string name="facebook_app_id">638735563351036</string>
-    <string name="fb_login_protocol_scheme">fb638735563351036</string>
+    <!--string name="facebook_app_id">638735563351036</string>
+    <string name="fb_login_protocol_scheme">fb638735563351036</string-->
+    <string name="facebook_app_id">690250128184615</string>
+    <string name="fb_login_protocol_scheme">fb690250128184615</string>
     <string name="googlepay_status_unavailable" translatable="false">GooglePay is unavaliable</string>
     <string name="googlepay_status_checking" translatable="false">Checking if Google Pay is available...</string>
     <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
