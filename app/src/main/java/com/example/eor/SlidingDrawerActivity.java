@@ -54,7 +54,6 @@ public class SlidingDrawerActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         header_name = header.findViewById(R.id.header_name);
         header_email = header.findViewById(R.id.header_email);
         header_image = header.findViewById(R.id.header_image);
@@ -106,7 +105,9 @@ public class SlidingDrawerActivity extends AppCompatActivity {
                 }
             }, 2000);
         }
+
         else{
+
             super.onBackPressed();
         }
     }
@@ -124,4 +125,5 @@ public class SlidingDrawerActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }

@@ -22,14 +22,24 @@ import java.util.ArrayList;
 public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAdapter.MessageViewHolder>
 {
 
-    private ArrayList<MyMessagesData>  messagesData;
+    static ArrayList<MyMessagesData>  messagesData;
     private MessageListener messageListener;
 
     public MyMessagesDataAdapter(MessageListener messagesListener) {
+
         this.messageListener = messagesListener;
     }
 
     MyMessagesDataAdapter(){
+    }
+
+
+    static {
+        messagesData=new ArrayList<>();
+        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Neklaces","Ohk"));
+        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Car","Ohk"));
+        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Office Printers","Ohk"));
+
     }
 
     @NonNull
@@ -46,8 +56,8 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
 
     @Override
     public void onBindViewHolder(@NonNull MyMessagesDataAdapter.MessageViewHolder holder, final int position) {
-        holder.__textView_MessageView.setText("The newest message here");
-        holder.__textview_NameMessage.setText("Name " + position);
+        holder.__textView_MessageView.setText(messagesData.get(position).get__textview_MessageShort());
+        holder.__textview_NameMessage.setText(messagesData.get(position).get__textview_NameForMessageView());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +78,12 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
                 __constraintLayoutParams_MessageElement.setMarginEnd(20);
                 holder.__constraintLayout_MessageView.setPadding(40,0,40,0);
         }
+
     }
 
     @Override
     public int getItemCount() {
-        return 30;
+        return messagesData.size();
     }
 
 

@@ -52,6 +52,7 @@ public class InboxFragment extends Fragment implements MessageListener{
     @Override
     public void ViewonClick(int pos) {
         Intent intent = new Intent(getContext(),ChatActivity.class);
+        intent.putExtra("Itemname",MyMessagesDataAdapter.messagesData.get(pos).get__textview_NameForMessageView());
         startActivity(intent);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.ArrayList;
@@ -28,15 +29,15 @@ public class FilterFragment extends Fragment {
 
     DatePickerDialog picker;
     public View __view_filter;
-    public TextView __textview_filter;
+    public TextView __textview_filter,__textview_filterClearBtn;
     SeekBar seekBarPrice_filter;
     SeekBar seekBarRadius_filter;
-
-
+    PostAdapter_ExplorePostsActivity ps;
+    RecyclerView rv;
     EditText postalcode;
     EditText datePickerDialogTo;
     EditText datePickerDialogFrom;
-    int productPrice;
+    static int productPrice;
 
 
 
@@ -45,8 +46,8 @@ public class FilterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         __view_filter = inflater.inflate(R.layout.layout_filterposts,container,false);
         __textview_filter = __view_filter.findViewById(R.id.__textview_FilterBtn);
-
         seekBarPrice_filter = __view_filter.findViewById(R.id.__seekbar_pricerange);
+        __textview_filterClearBtn = __view_filter.findViewById(R.id.__textview_FilterClearButton);
 
 
 
@@ -176,11 +177,21 @@ public class FilterFragment extends Fragment {
 
 
                 productPrice = seekBarPrice_filter.getProgress();
-                ApplyFilterToPosts(productPrice);
+                HomeFragment.update();
+                System.out.println("Price Range:"+seekBarPrice_filter.getProgress());
+
+                startActivity(new Intent(getContext(),SlidingDrawerActivity.class));
 
             }
 
-            private void ApplyFilterToPosts(int productPrice) {
+
+
+
+        });
+
+        __textview_filterClearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(getContext(),SlidingDrawerActivity.class));
             }
         });
@@ -195,5 +206,10 @@ public class FilterFragment extends Fragment {
 
     }
 
-
+    @Override
+    public void onDetach() {
+        FilterFragment.productPrice = 0;
+        HomeFragment.update();
+        super.onDetach();
+    }
 }

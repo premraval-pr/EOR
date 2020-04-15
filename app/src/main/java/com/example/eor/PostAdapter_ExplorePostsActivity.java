@@ -21,6 +21,7 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
     List<ExplorePost_Model> list;
     ItemListener_ExplorePostsActivity iL;
     public static String post_id="";
+    int count;
 
 
 
@@ -51,26 +52,29 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
     public void onBindViewHolder(@NonNull final  PostAdapter_ExplorePostsActivity.VH holder, final int position)
     {
 
-        holder.__textview_itemTitle.setText(list.get(position).getTitle());
-        holder.__textview_userName.setText(list.get(position).getUsername());
-        holder.__textview_location.setText(list.get(position).getLocation());
-        holder.__textview_price.setText(String.valueOf(list.get(position).getPrice()));
 
-        if(list.get(position).getImage_path()==null) {
-            holder.__imageview_post.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.__defaultimageicon));
-        }
-        else {
-            Picasso.with(holder.itemView.getContext()).load(list.get(position).image_path).resize(200, 200).
-                    centerCrop().into(holder.__imageview_post);
-        }
+            holder.__textview_itemTitle.setText(list.get(position).getTitle());
+            holder.__textview_userName.setText(list.get(position).getUsername());
+            holder.__textview_location.setText(list.get(position).getLocation());
+            holder.__textview_price.setText(String.valueOf(list.get(position).getPrice()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                iL.onCLickPost(position);
-                post_id=list.get(position).getId();
+            if (list.get(position).getImage_path() == null) {
+                holder.__imageview_post.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.__defaultimageicon));
+            } else {
+                Picasso.with(holder.itemView.getContext()).load(list.get(position).image_path).resize(200, 200).
+                        centerCrop().into(holder.__imageview_post);
             }
-        });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    iL.onCLickPost(position);
+                    post_id = list.get(position).getId();
+                }
+            });
+
+
+
 
     }
 

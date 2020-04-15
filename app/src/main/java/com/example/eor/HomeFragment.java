@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
     List<ExplorePost_Model> list;
     List<ExplorePost_Model> filteredlist = new ArrayList<ExplorePost_Model>();
     ExplorePost_DAO explorePost_dao;
-    PostAdapter_ExplorePostsActivity postAdapter_explorePostsActivity;
+    public static PostAdapter_ExplorePostsActivity postAdapter_explorePostsActivity;
 
 
 
@@ -78,6 +78,18 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
             }
         });
         return inboxView;
+    }
+
+   public static void update()
+   {
+       postAdapter_explorePostsActivity.notifyDataSetChanged();
+   }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        FilterFragment.productPrice=0;
+        update();
     }
 
     @Override

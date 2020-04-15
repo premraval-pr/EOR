@@ -1,9 +1,11 @@
 package com.example.eor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,16 +36,21 @@ public class ChatActivity extends AppCompatActivity {
     ImageView send;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Chat> chatArrayList;
+    String name="";
+    TextView itemtitle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
+        itemtitle=findViewById(R.id.__textview_itemtitle_chat);
         chatArrayList = new ArrayList<>();
         ChatRecyclerView = findViewById(R.id.__recycleview_chatlayout_chat);
         chatAdapter = new ChatAdapter(this,chatArrayList);
+        Intent i=getIntent();
+        name=i.getStringExtra("Itemname");
+        itemtitle.setText(name);
         ChatRecyclerView.setAdapter(chatAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         ChatRecyclerView.setLayoutManager(linearLayoutManager);
