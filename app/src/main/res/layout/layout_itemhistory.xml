@@ -116,6 +116,7 @@
         android:hint="dd/mm/yyyy"
         android:textSize="10sp"
         android:textColorHint="@color/__textColor"
+        android:textColor="@color/__textColor"
         app:layout_constraintStart_toStartOf="@id/__textview_to"
         app:layout_constraintTop_toBottomOf="@id/__textview_from"
         app:layout_constraintLeft_toRightOf="@id/__textview_fromddmmyyyy"

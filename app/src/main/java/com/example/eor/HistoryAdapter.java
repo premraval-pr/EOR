@@ -40,8 +40,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.itemTitleTV.setText(historyLayout.getTitle());
         holder.userNameTV.setText(historyLayout.getUsername());
         holder.locationTV.setText(historyLayout.getLocation());
-        holder.fromTV.setText(historyLayout.getFromDate().toString());
-        holder.toTV.setText(historyLayout.getToDate().toString());
+        holder.fromddTV.setText(historyLayout.getFromDate().toString());
+        holder.toddTV.setText(historyLayout.getToDate().toString());
         holder.dropDownImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
