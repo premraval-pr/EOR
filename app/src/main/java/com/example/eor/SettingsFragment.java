@@ -15,7 +15,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -53,6 +55,13 @@ public class SettingsFragment extends AppCompatActivity implements GoogleApiClie
         __button_logout_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+                if(isLoggedIn) {
+                    LoginManager.getInstance().logOut();
+                    gotoMainActivity();
+                }
                 Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(@NonNull Status status) {
@@ -63,13 +72,15 @@ public class SettingsFragment extends AppCompatActivity implements GoogleApiClie
                         }
                     }
 
-                    private void gotoMainActivity() {
-                        finish();
-                        Intent intent = new Intent(getApplicationContext(),FirstActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }
+
                 });
+            }
+
+            private void gotoMainActivity(){
+                finish();
+                Intent intent = new Intent(getApplicationContext(),FirstActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
@@ -81,10 +92,5 @@ public class SettingsFragment extends AppCompatActivity implements GoogleApiClie
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-    public void logoutFB(View view) {
-        LoginManager.getInstance().logOut();
-        __button_logout_google.performClick();
     }
 }
