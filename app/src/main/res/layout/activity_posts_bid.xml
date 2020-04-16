@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PostsBid"
+    android:paddingTop="10dp"
+    android:id="@+id/constraintlayout_view"
+    android:background="@color/__primaryLightBackground">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Details"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/__textview_bid_title"
+        android:textColor="@color/__textColor"
+        app:layout_constraintBottom_toTopOf="@id/__imageview_bid_defaultimage" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__defaultimageicon"
+        android:id="@+id/__imageview_bid_defaultimage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/__textview_bid_title"
+        app:layout_constraintBottom_toTopOf="@id/__imageview_bid_usernameicon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Title"
+        app:layout_constraintTop_toTopOf="@id/__imageview_bid_defaultimage"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/__imageview_bid_defaultimage"
+        android:id="@+id/__textview_bid_itemtitle"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/__imageview_bid_defaultimage"
+        android:textColor="@color/__textColor"
+        >
+    </TextView>
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/__textview_bid_itemtitle"
+        app:layout_constraintStart_toStartOf="@id/__textview_bid_itemtitle"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_bidtitle"
+        app:layout_constraintRight_toLeftOf="@+id/__textview_bid_username"
+        android:src="@drawable/__personicon"
+        android:id="@+id/__imageview_bid_usernameicon"
+        />
+
+    <TextView
+        android:id="@+id/__textview_bid_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/__textColor"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_bidtitle"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_bid_usernameicon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_bid_itemtitle"
+        android:layout_marginStart="10dp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/__textview_bid_username"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_bidtitle"
+        app:layout_constraintTop_toBottomOf="@id/__textview_bid_itemtitle"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/__locationicon"
+        android:id="@+id/__imageview_bid_locationicon">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/__textview_bid_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textColor="@color/__textColor"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_bidtitle"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_bid_locationicon"
+        app:layout_constraintTop_toBottomOf="@id/__textview_bid_itemtitle"
+        android:layout_marginStart="10dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/__timepicker_bid_bidtime"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:text="Bid ends in"
+        android:id="@+id/__textview_bid_bidtitle"
+        android:textColor="@color/__textColor" />
+
+
+    <Chronometer
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/__textview_bid_bidtitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/__timepicker_bid_bidtime"
+        android:text="Bid Ends in"
+        android:textSize="70sp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/__primaryColor"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/__timepicker_bid_bidtime"
+        android:id="@+id/__textview_bid_actualbid"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_actualprice"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Actual Price"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        android:textSize="25sp"
+        android:background="@color/__primaryColor"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/__textview_bid_actualprice"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="$ 20"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/__textColor"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/__textview_bid_actualbid"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/__textview_bid_currentbid"
+        android:text="Current Bid"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/__textview_bid_actualprice"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        android:background="@color/__primaryColor"
+        android:textColor="#fff" />
+
+
+    <TextView
+        android:id="@+id/__textview_bid_price"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="$ 20"
+        android:textColor="@color/__textColor"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/__textview_bid_currentbid"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/__userprofileicon"
+        android:id="@+id/__imageview_bid_userprofileicon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/__textview_bid_enteryourbid"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        app:layout_constraintLeft_toRightOf="@id/__imageview_bid_userprofileicon"
+        app:layout_constraintTop_toTopOf="@id/__imageview_bid_userprofileicon"
+        android:textSize="20sp"
+        android:id="@+id/__textviewusername_bid"
+        android:textColor="@color/__textColor"
+        app:layout_constraintBottom_toBottomOf="@id/__imageview_bid_userprofileicon" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Enter Your Bid"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:textColor="#fff"
+        android:id="@+id/__textview_bid_enteryourbid"
+        android:background="@color/__primaryColor"
+        android:clickable="true"
+        android:onClick="openDialogBox" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

@@ -11,7 +11,6 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,8 +23,8 @@
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
-        <activity android:name=".ExtraCredentialsRegisterPage"/>
-        <activity android:name=".FirstActivity">
+        <activity android:name=".activity.ExtraCredentialsRegisterPage"/>
+        <activity android:name=".activity.FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,16 +32,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SlidingDrawerActivity"
+            android:name=".activity.SlidingDrawerActivity"
             android:label="Drawer"
             android:theme="@style/NoActionBar"/>
-        <activity android:name=".ReviewFragment" />
-        <activity android:name=".PostDescActivity" />
-        <activity android:name=".TestPop" />
-        <activity android:name=".ReplyPop" />
-        <activity android:name=".ChatActivity" android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".UploadPostActivity" />
-        <activity android:name=".BookActivity" />
+        <activity android:name=".fragment.ReviewFragment" />
+        <activity android:name=".activity.PostDescActivity" />
+        <activity android:name=".popup.TestPop" />
+        <activity android:name=".popup.ReplyPop" />
+        <activity android:name=".activity.ChatActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.UploadPostActivity" />
+        <activity android:name=".activity.BookActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -68,12 +67,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsFragment" />
-        <activity android:name=".CheckoutActivity" />
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
+        <activity android:name=".fragment.SettingsFragment" />
+        <activity android:name=".activity.CheckoutActivity" />
+        <activity android:name=".activity.PostsBid" />
     </application>
 
 </manifest>
