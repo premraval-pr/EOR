@@ -20,6 +20,7 @@ import com.example.eor.R;
 import com.example.eor.dao.User_DAO;
 import com.squareup.picasso.Picasso;
 
+
 public class PostsBid extends AppCompatActivity {
 
 
