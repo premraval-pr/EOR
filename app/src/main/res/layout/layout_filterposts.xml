@@ -69,6 +69,7 @@ Author: Karan Patel
             android:paddingTop="20dp"
             android:max="1000"
             android:min="0"
+
             android:progressBackgroundTint="@color/__primaryLightBackground"
             />
 
@@ -274,6 +275,23 @@ Author: Karan Patel
             android:text="Apply Filters"
             android:background="@drawable/layout_roundbackground"
             app:layout_constraintTop_toBottomOf="@id/__edittext_dateFrom_filter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/__textColor"
+            android:padding="7dp"
+            app:layout_constraintBottom_toBottomOf="@id/__textview_FilterClearButton"
+            />
+
+        <TextView
+            android:id="@+id/__textview_FilterClearButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:background="@drawable/layout_roundbackground"
+            app:layout_constraintTop_toBottomOf="@id/__textview_FilterBtn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_margin="20dp"

@@ -9,7 +9,7 @@ Author: Karan Patel
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstActivity"
+    tools:context=".activity.FirstActivity"
     android:id="@+id/__constraintlayout_mainscreen"
     android:background="@color/__primaryColor">
 

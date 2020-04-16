@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:id="@+id/__constraintlayout_mainscreen_filter">
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/__recylerview_mainContent"
         android:layout_width="match_parent"
@@ -15,6 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
         />
 
     <Button
