@@ -110,6 +110,7 @@ public class UploadPostActivity extends AppCompatActivity {
 
 
 
+
     private static String imagetoString(Bitmap bmp)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
@@ -117,6 +118,7 @@ public class UploadPostActivity extends AppCompatActivity {
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }
+
 
     public void uploadPost(View view) {
         post_dao.SendDatatoServer(new UploadPost_Model(imagetoString(bitmap),posttitle.getText().toString(),postdescription.getText().toString(),rent_price.getText().toString()));
