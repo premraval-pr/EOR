@@ -7,43 +7,43 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.eor.HomeFragment"
+        android:name="com.example.eor.fragment.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.eor.ProfileFragment"
+        android:name="com.example.eor.fragment.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_posts"
-        android:name="com.example.eor.PostsFragment"
+        android:name="com.example.eor.fragment.PostsFragment"
         android:label= "Posts"
         tools:layout="@layout/fragment_posts" />
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.example.eor.HistoryFragment"
+        android:name="com.example.eor.fragment.HistoryFragment"
         android:label="History"
         tools:layout="@layout/fragment_hisory" />
 
     <fragment
         android:id="@+id/nav_inbox"
-        android:name="com.example.eor.InboxFragment"
+        android:name="com.example.eor.fragment.InboxFragment"
         android:label="Inbox"
         tools:layout="@layout/fragment_inbox" />
 
     <fragment
         android:id="@+id/nav_social"
-        android:name="com.example.eor.SocialFragment"
+        android:name="com.example.eor.fragment.SocialFragment"
         android:label="Social"
         tools:layout="@layout/fragment_social" />
 
     <fragment
         android:id="@+id/action_settings"
-        android:name="com.example.eor.SettingsFragment"
+        android:name="com.example.eor.fragment.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings"/>
 </navigation>

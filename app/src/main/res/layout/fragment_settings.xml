@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff"
-    tools:context=".SettingsFragment"
+    tools:context=".fragment.SettingsFragment"
     >
 
     <TextView
@@ -42,23 +42,6 @@
         app:layout_constraintBottom_toBottomOf="@id/__textview_enable_biometric"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginEnd="20dp"/>
-
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/__button_loginwithfacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/__switch_enable_biometric"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:onClick="logoutFB"
-        android:background="@drawable/layout_roundinputbackground"
-        android:backgroundTint="@color/__primaryColor"
-        android:textColor="#ffffff"
-        />
 
 
     <TextView

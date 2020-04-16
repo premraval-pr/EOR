@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostDescActivity"
+    tools:context=".activity.PostDescActivity"
     android:id="@+id/__constraintlayout_postbg"
     android:background="#fff"
     >
@@ -183,7 +183,7 @@
         android:id="@+id/__button_bookbid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book/Bid"
+        android:text="Book"
         android:textColor="#ffffff"
         android:layout_marginTop="15dp"
         android:paddingHorizontal="50dp"
@@ -200,7 +200,7 @@
         android:layout_height="wrap_content"
         android:padding="25dp"
         android:textColor="@color/__primaryLightBackground"
-        android:text="Reply"
+        android:text="Bid"
         android:backgroundTint="@color/__primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         />
