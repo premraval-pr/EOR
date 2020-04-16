@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eor.R;
 
+
 public class PostsBid extends AppCompatActivity {
 
 
