@@ -32,8 +32,6 @@ public class PostDescActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdesc);
-
-
         bookbid = findViewById(R.id.__button_bookbid);
         textViewPostDesc = findViewById(R.id.__textview_itemdescription);
         textViewPostDesc.setMovementMethod(new ScrollingMovementMethod());
@@ -76,7 +74,14 @@ public class PostDescActivity extends AppCompatActivity {
         reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PostsBid.class));
+
+                Intent intentbid=new Intent(getApplicationContext(), PostsBid.class);
+                intentbid.putExtra("ItemTitle",textViewPostTitle.getText().toString());
+                intentbid.putExtra("UserName",textViewUserName.getText().toString());
+                intentbid.putExtra("Location",textViewLocation.getText().toString());
+                intentbid.putExtra("PostAmount",Double.parseDouble(postDescription_model.getPostPrice()));
+                intentbid.putExtra("ImageString", PostDescription_DAO.image_post.get(0));
+                startActivity(intentbid);
             }
         });
 
