@@ -7,22 +7,22 @@
 package com.example.eor.model;
 public class MyMessagesData
 {
-    private int __imageview_icon_message;
+    private String __textview_PostIDForMessageView;
     private String __textview_NameForMessageView;
     private String __textview_MessageShort;
 
-    public MyMessagesData(int __imageview_icon_message, String __textview_NameForMessageView, String __textview_MessageShort) {
-        this.__imageview_icon_message = __imageview_icon_message;
+    public MyMessagesData(String __textview_PostIDForMessageView, String __textview_NameForMessageView, String __textview_MessageShort) {
+        this.__textview_PostIDForMessageView = __textview_PostIDForMessageView;
         this.__textview_NameForMessageView = __textview_NameForMessageView;
         this.__textview_MessageShort = __textview_MessageShort;
     }
 
-    public int get__imageview_icon_message() {
-        return __imageview_icon_message;
+    public String get__textview_PostIDForMessageView() {
+        return __textview_PostIDForMessageView;
     }
 
-    public void set__imageview_icon_message(int __imageview_icon_message) {
-        this.__imageview_icon_message = __imageview_icon_message;
+    public void set__textview_PostIDForMessageView(String __textview_PostIDForMessageView) {
+        this.__textview_PostIDForMessageView = __textview_PostIDForMessageView;
     }
 
     public String get__textview_NameForMessageView() {

@@ -16,13 +16,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.eor.MapsFragment;
 import com.example.eor.R;
 import com.example.eor.activity.PostDescActivity;
 import com.example.eor.activity.UploadPostActivity;
 import com.example.eor.adapter.PostAdapter_ExplorePostsActivity;
 import com.example.eor.dao.ExplorePost_DAO;
-import com.example.eor.fragment.FilterFragment;
 import com.example.eor.listener.ItemListener_ExplorePostsActivity;
 import com.example.eor.model.ExplorePost_Model;
 

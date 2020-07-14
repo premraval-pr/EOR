@@ -1,4 +1,4 @@
-package com.example.eor;
+package com.example.eor.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.eor.R;
 import com.example.eor.dao.ExplorePost_DAO;
 import com.example.eor.model.ExplorePost_Model;
 import com.google.android.gms.maps.CameraUpdateFactory;
