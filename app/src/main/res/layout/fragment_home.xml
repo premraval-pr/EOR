@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:id="@+id/__constraintlayout_mainscreen_filter">
+
+    <Button
+        android:id="@+id/__button_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toggle Map View"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <FrameLayout
+        android:id="@+id/__frame_map"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/__button_mapview"
+        app:layout_constraintBottom_toTopOf="@id/__recylerview_mainContent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/__recylerview_mainContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/__frame_map"
         app:layout_constraintBottom_toBottomOf="parent"
         android:paddingBottom="100dp"
         android:clipToPadding="false"

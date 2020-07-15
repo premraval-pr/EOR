@@ -34,15 +34,6 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
         this.messageListener = messagesListener;
     }
 
-
-    static {
-        messagesData=new ArrayList<>();
-        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Neklaces","Ohk"));
-        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Car","Ohk"));
-        messagesData.add(new MyMessagesData(R.drawable.__default_user,"Office Printers","Ohk"));
-
-    }
-
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

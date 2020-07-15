@@ -32,7 +32,7 @@ public class SlidingDrawerActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private boolean doubleBackToExitPressedOnce = false;
     private NavController navController;
-    public static String USER_ID = "U0001";
+    public static String USER_ID = "U0013";
     private NavigationView navigationView;
     private TextView header_name,header_email;
     private ImageView header_image;

@@ -100,17 +100,11 @@ public class UploadPostActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case PERMISSION_CODE:{
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                {
-                    openGallery();
-                }
-                else
-                {
-                    Toast.makeText(this, "Permission Denied!!", Toast.LENGTH_SHORT).show();
-                }
+        if (requestCode == PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+            } else {
+                Toast.makeText(this, "Permission Denied!!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -168,10 +162,10 @@ public class UploadPostActivity extends AppCompatActivity {
 
     }
 
-    private static String imagetoString(Bitmap bmp)
+    private static String imageToString(Bitmap bmp)
     {
         ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP,10,byteArrayOutputStream);
+        bmp.compress(Bitmap.CompressFormat.WEBP,10,byteArrayOutputStream);
         byte[] imgBytes=byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(imgBytes,Base64.DEFAULT);
     }
@@ -179,7 +173,7 @@ public class UploadPostActivity extends AppCompatActivity {
 
     public void uploadPost(View view) {
         Toast.makeText(getApplicationContext(),"Your post has been created",Toast.LENGTH_SHORT).show();
-        post_dao.SendDatatoServer(new UploadPost_Model(imagetoString(bitmap),posttitle.getText().toString(),postdescription.getText().toString(),rent_price.getText().toString()));
+        post_dao.SendDatatoServer(new UploadPost_Model(imageToString(bitmap),posttitle.getText().toString(),postdescription.getText().toString(),rent_price.getText().toString()));
         Intent intent = new Intent(getApplicationContext(), SlidingDrawerActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
