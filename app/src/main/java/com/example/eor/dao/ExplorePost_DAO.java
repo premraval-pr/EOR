@@ -53,7 +53,14 @@ public class ExplorePost_DAO {
             {
                 JSONObject jsonObject=ja.getJSONObject(i);
                 if(FilterFragment.productPrice>jsonObject.getDouble("price") || FilterFragment.productPrice ==0) {
-                    list.add(new ExplorePost_Model(jsonObject.getString("id"), jsonObject.getString("title"), jsonObject.getString("username"), jsonObject.getString("location"), jsonObject.getString("image_eor"), jsonObject.getDouble("price")));
+                    list.add(new ExplorePost_Model(jsonObject.getString("id"),
+                            jsonObject.getString("title"),
+                            jsonObject.getString("username"),
+                            jsonObject.getString("location"),
+                            jsonObject.getString("image_eor"),
+                            jsonObject.getDouble("price"),
+                            jsonObject.getDouble("latitude"),
+                            jsonObject.getDouble("longitude")));
                 }
             }
 

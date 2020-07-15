@@ -7,16 +7,48 @@
     tools:context=".activity.UploadPostActivity"
     android:background="#fff">
 
-    <ImageView
-        android:id="@+id/__imageview_postimage"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/__uploadimage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/__edittext_adtitle"
-        />
+            <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/__imageview_postimage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/__imageview_postimage2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/__uploadimage"
+                app:layout_constraintBottom_toTopOf="@id/__imageview_postimage3"
+                />
+            <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/__imageview_postimage"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/__imageview_postimage2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/__uploadimage"
+                app:layout_constraintBottom_toTopOf="@id/__imageview_postimage4"
+                />
+            <ImageView
+                android:id="@+id/__imageview_postimage3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/__imageview_postimage4"
+                android:src="@drawable/__uploadimage"
+                app:layout_constraintTop_toBottomOf="@id/__imageview_postimage"
+                app:layout_constraintBottom_toTopOf="@id/__edittext_adtitle"
+                />
+            <ImageView
+                android:id="@+id/__imageview_postimage4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/__imageview_postimage3"
+                app:layout_constraintBottom_toTopOf="@id/__edittext_adtitle"
+                app:layout_constraintTop_toBottomOf="@id/__imageview_postimage2"
+                android:src="@drawable/__uploadimage"
+                />
+
+
 
     <EditText
         android:id="@+id/__edittext_adtitle"
@@ -26,7 +58,7 @@
         android:textColor="@color/__textColor"
         android:textColorHint="@color/__hintColor"
         android:background="@drawable/__roundbackground_app"
-        app:layout_constraintTop_toBottomOf="@id/__imageview_postimage"
+        app:layout_constraintTop_toBottomOf="@id/__imageview_postimage4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/__edittext_addescription"
         android:paddingHorizontal="30dp"

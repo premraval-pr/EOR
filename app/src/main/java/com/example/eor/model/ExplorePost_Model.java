@@ -1,5 +1,7 @@
 package com.example.eor.model;
 
+import androidx.annotation.NonNull;
+
 public class ExplorePost_Model {
     String id;
     String title;
@@ -15,17 +17,28 @@ public class ExplorePost_Model {
     String username;
     String location;
     String image_path;
-    double price;
+    double price,latitude,longitude;
 
+    @NonNull
     @Override
     public String toString() {
-        return "ExplorePost_Model{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", location='" + location + '\'' +
-                ", image_path='" + image_path + '\'' +
-                ", price=" + price +
-                '}';
+        return title + " By " + username;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getId() {
@@ -68,12 +81,14 @@ public class ExplorePost_Model {
         this.price = price;
     }
 
-    public ExplorePost_Model(String id, String title,String username, String location, String image_path, double price) {
+    public ExplorePost_Model(String id, String title,String username, String location, String image_path, double price, double latitude, double longitude) {
         this.id = id;
         this.title=title;
         this.username = username;
         this.location = location;
         this.image_path =image_path;
         this.price = price;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }
