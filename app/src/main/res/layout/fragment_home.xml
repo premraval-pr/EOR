@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Filter"
+        android:alpha="0.8"
         android:id="@+id/__button_filter"
         android:background="@drawable/layout_roundbackground_half"
         android:backgroundTint="@color/__primaryDarkBackground"
