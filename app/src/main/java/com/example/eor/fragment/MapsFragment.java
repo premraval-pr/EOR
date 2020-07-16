@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -65,7 +66,15 @@ public class MapsFragment extends Fragment {
         Log.d("MAP", "animate: current position" + modelList.get(firstVisibleItemPosition).toString());
         ExplorePost_Model currentPost = modelList.get(firstVisibleItemPosition);
         LatLng currentPostLatLng = new LatLng(currentPost.getLatitude(),currentPost.getLongitude());
-        googleMapMain.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPostLatLng,13));
+
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(currentPostLatLng)
+                .zoom(17)
+                .tilt(50)
+                .build();
+
+        googleMapMain.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         googleMapMain.addMarker(new MarkerOptions().position(currentPostLatLng).title(currentPost.toString())).showInfoWindow();
     }
 }
