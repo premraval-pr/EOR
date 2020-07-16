@@ -20,6 +20,10 @@ public class PostDescription_Model {
         this.user_city = user_city;
     }
 
+    public PostDescription_Model() {
+
+    }
+
     public String getPostId() {
         return postId;
     }

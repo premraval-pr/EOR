@@ -37,9 +37,10 @@ public class UploadPost_DAO {
 
                     nameValuePairs.add(new BasicNameValuePair("username", SlidingDrawerActivity.USER_ID));
                     nameValuePairs.add(new BasicNameValuePair("description",data.getUploadpost_postdescription()));
-                    nameValuePairs.add(new BasicNameValuePair("image_eor",data.getUploadpost_imagepath()));
+                    for(String s : data.getUploadpost_imagepath()) {
+                        nameValuePairs.add(new BasicNameValuePair("image_eor[]", s));
+                    }
                     nameValuePairs.add(new BasicNameValuePair("price",String.valueOf(data.getUploadpost_postprice())));
-
                     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                     StrictMode.setThreadPolicy(policy);
                     HttpClient httpClient = new DefaultHttpClient();

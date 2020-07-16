@@ -25,6 +25,7 @@ public class PostDescription_DAO {
         String line, result;
 
         try {
+            System.out.println(post_id);
             image_post=new ArrayList<>();
             for(String s : PostDescription_DAO.image_post)
             {
@@ -58,10 +59,10 @@ public class PostDescription_DAO {
                 image_post.add(jsonObject1.getString("image_link"));
                 System.out.println("Images "+image_post.size());
 
-                return new PostDescription_Model(jsonObject1.getString("post_id"), jsonObject1.getString("post_title"),
-                        jsonObject1.getString("post_description"), jsonObject1.getString("post_price"),dateFrom
-                        , dateTo, dateCreated, jsonObject1.getString("image_link"), jsonObject1.getString("user_fname"), jsonObject1.getString("user_city"));
 
+             return new PostDescription_Model(jsonObject1.getString("post_id"), jsonObject1.getString("post_title"),
+                        jsonObject1.getString("post_description"), jsonObject1.getString("post_price"),dateFrom
+                      , dateTo, dateCreated, jsonObject1.getString("image_link"), jsonObject1.getString("user_fname"), jsonObject1.getString("user_city"));
 
 
             }

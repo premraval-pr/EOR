@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class UploadPost_Model {
 
-    private String uploadpost_imagepath;
+    private String[] uploadpost_imagepath;
     private String uploadpost_posttite;
     private String uploadpost_postdescription;
     private String uploadpost_postprice;
@@ -16,18 +16,18 @@ public class UploadPost_Model {
     private Date uploadpost_postto;
     private String uploadpost_postCategory;
 
-    public UploadPost_Model(String uploadpost_imagepath, String uploadpost_posttite, String uploadpost_postdescription, String uploadpost_postprice) {
+    public UploadPost_Model(String uploadpost_imagepath[], String uploadpost_posttite, String uploadpost_postdescription, String uploadpost_postprice) {
         this.uploadpost_imagepath = uploadpost_imagepath;
         this.uploadpost_posttite = uploadpost_posttite;
         this.uploadpost_postdescription = uploadpost_postdescription;
         this.uploadpost_postprice = uploadpost_postprice;
     }
 
-    public String getUploadpost_imagepath() {
+    public String[] getUploadpost_imagepath() {
         return uploadpost_imagepath;
     }
 
-    public void setUploadpost_imagepath(String uploadpost_imagepath) {
+    public void setUploadpost_imagepath(String uploadpost_imagepath[]) {
         this.uploadpost_imagepath = uploadpost_imagepath;
     }
 

@@ -45,6 +45,7 @@ public class PostDescActivity extends AppCompatActivity {
         bookbid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intentBooking = new Intent(getApplicationContext(), BookActivity.class);
                 intentBooking.putExtra("ItemTitle",textViewPostTitle.getText().toString());
                 intentBooking.putExtra("UserName",textViewUserName.getText().toString());
