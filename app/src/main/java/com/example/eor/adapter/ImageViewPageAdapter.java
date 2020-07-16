@@ -15,6 +15,7 @@ import com.example.eor.dao.PostDescription_DAO;
 import com.example.eor.model.PostDescription_Model;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageViewPageAdapter extends PagerAdapter {
@@ -23,16 +24,15 @@ public class ImageViewPageAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    public List<String> images;
+    public ArrayList<String> images;
 
-    public ImageViewPageAdapter(Context context) {
+    public ImageViewPageAdapter(Context context, ArrayList<String> imagePath) {
         this.context = context;
-
+        images=imagePath;
     }
 
     @Override
     public int getCount() {
-        images= PostDescription_DAO.image_post;
         return images.size();
     }
 
@@ -50,13 +50,12 @@ public class ImageViewPageAdapter extends PagerAdapter {
         ImageView imageView = view.findViewById(R.id.__imageview_sliderimage);
         Picasso.with(context).load(images.get(position)).into(imageView);
         ViewPager viewPager = (ViewPager) container;
-        viewPager.addView(view,0);
+        viewPager.addView(view,position);
         return view;
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
         ViewPager viewPager = (ViewPager) container;
         View view = (View) object;
         viewPager.removeView(view);

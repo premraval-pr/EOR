@@ -1,13 +1,15 @@
 package com.example.eor.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class PostDescription_Model {
 
-    String postId,postTitle, postDescription, postPrice, imagePath, user_fname, user_city;
+    String postId,postTitle, postDescription, postPrice, user_fname, user_city;
+    ArrayList<String> imagePath;
     Date postFrom, postTo, postCreated;
 
-    public PostDescription_Model(String postId, String postTitle, String postDescription, String postPrice, Date postFrom, Date postTo, Date postCreated, String imagePath, String user_fname, String user_city) {
+    public PostDescription_Model(String postId, String postTitle, String postDescription, String postPrice, Date postFrom, Date postTo, Date postCreated, ArrayList<String> imagePath, String user_fname, String user_city) {
         this.postId = postId;
         this.postTitle = postTitle;
         this.postDescription = postDescription;
@@ -80,11 +82,11 @@ public class PostDescription_Model {
         this.postCreated = postCreated;
     }
 
-    public String getImagePath() {
+    public ArrayList<String> getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(ArrayList<String> imagePath) {
         this.imagePath = imagePath;
     }
 

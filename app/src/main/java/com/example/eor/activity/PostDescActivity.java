@@ -99,7 +99,7 @@ public class PostDescActivity extends AppCompatActivity {
         textViewPostAvailableTo.setText(postDescription_model.getPostTo().toString().substring(4,10)+postDescription_model.getPostTo().toString().substring(23,28));
         textViewPostCreatedOn.setText(postDescription_model.getPostCreated().toString().substring(4,10)+postDescription_model.getPostCreated().toString().substring(23,28));
         viewPager = findViewById(R.id.__scrollview_postimage);
-        ImageViewPageAdapter imageViewPageAdapter = new ImageViewPageAdapter(this);
+        ImageViewPageAdapter imageViewPageAdapter = new ImageViewPageAdapter(this,postDescription_model.getImagePath());
         viewPager.setAdapter(imageViewPageAdapter);
         textViewUserName.setText(postDescription_model.getUser_fname());
         textViewLocation.setText(postDescription_model.getUser_city());

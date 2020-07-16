@@ -20,7 +20,16 @@ import java.util.Date;
 import java.util.List;
 
 public class PostDescription_DAO {
-    public static List<String> image_post;
+
+    String post_title;
+    String post_id;
+    String post_description;
+    String post_price;
+    Date dateFrom;
+    Date dateTo;
+    Date dateCreated;
+    String f_name,city;
+    public static ArrayList<String> image_post;
     public PostDescription_Model getPost(String post_id) {
         String line, result;
 
@@ -53,19 +62,24 @@ public class PostDescription_DAO {
                 JSONObject jsonObject1 = ja.getJSONObject(i);
                 System.out.println(jsonObject1.getString("post_id"));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date dateFrom = sdf.parse(jsonObject1.getString("post_available_from").substring(0,10));
-                Date dateTo = sdf.parse(jsonObject1.getString("post_available_to").substring(0,10));
-                Date dateCreated = sdf.parse(jsonObject1.getString("post_created").substring(0,10));
+                dateFrom = sdf.parse(jsonObject1.getString("post_available_from").substring(0,10));
+                dateTo = sdf.parse(jsonObject1.getString("post_available_to").substring(0,10));
+                dateCreated = sdf.parse(jsonObject1.getString("post_created").substring(0,10));
                 image_post.add(jsonObject1.getString("image_link"));
-                System.out.println("Images "+image_post.size());
 
-
-             return new PostDescription_Model(jsonObject1.getString("post_id"), jsonObject1.getString("post_title"),
-                        jsonObject1.getString("post_description"), jsonObject1.getString("post_price"),dateFrom
-                      , dateTo, dateCreated, jsonObject1.getString("image_link"), jsonObject1.getString("user_fname"), jsonObject1.getString("user_city"));
+                this.post_id=jsonObject1.getString("post_id");
+                post_title=jsonObject1.getString("post_title");
+                post_description=jsonObject1.getString("post_description");
+                post_price=jsonObject1.getString("post_price");
+                f_name=jsonObject1.getString("user_fname");
+                city=jsonObject1.getString("user_city");
 
 
             }
+
+            return new PostDescription_Model(this.post_id,post_title ,post_description
+                    , post_price,dateFrom
+                    , dateTo, dateCreated, image_post,f_name,city );
         } catch (Exception e) {
             System.out.println(e+"date error");
         }

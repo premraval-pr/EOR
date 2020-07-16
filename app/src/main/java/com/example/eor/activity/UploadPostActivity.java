@@ -166,7 +166,7 @@ public class UploadPostActivity extends AppCompatActivity {
                     if (resultCode == RESULT_OK && data != null) {
                         bm = (Bitmap) data.getExtras().get("data");
                         imageView.setImageBitmap(bm);
-                        //setData(bm);
+                        setData(bm);
                     }
 
                     break;
@@ -183,7 +183,7 @@ public class UploadPostActivity extends AppCompatActivity {
                                 String picturePath = cursor.getString(columnIndex);
                                 Bitmap bitmapPickedGallery = BitmapFactory.decodeFile(picturePath);
                                 imageView.setImageBitmap(bitmapPickedGallery);
-                               // setData(bitmapPickedGallery);
+                                setData(bitmapPickedGallery);
                                 cursor.close();
 
                             }

@@ -2,6 +2,8 @@ package com.example.eor.model;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class ExplorePost_Model {
     String id;
     String title;
@@ -90,5 +92,18 @@ public class ExplorePost_Model {
         this.price = price;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExplorePost_Model that = (ExplorePost_Model) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
