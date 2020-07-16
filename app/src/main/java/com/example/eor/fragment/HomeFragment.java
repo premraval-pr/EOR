@@ -23,6 +23,7 @@ import com.example.eor.adapter.PostAdapter_ExplorePostsActivity;
 import com.example.eor.dao.ExplorePost_DAO;
 import com.example.eor.listener.ItemListener_ExplorePostsActivity;
 import com.example.eor.model.ExplorePost_Model;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,8 @@ import java.util.Objects;
 public class HomeFragment extends Fragment implements ItemListener_ExplorePostsActivity {
 
     RecyclerView __recylerView_mainRecyler;
-    Button __button_Post,__button_map;
+    Button __button_map;
+    FloatingActionButton __button_Post;
     List<ExplorePost_Model> list;
     FrameLayout __frame_map;
     List<ExplorePost_Model> filteredlist = new ArrayList<ExplorePost_Model>();
@@ -101,8 +103,9 @@ public class HomeFragment extends Fragment implements ItemListener_ExplorePostsA
                 filterFragment.setReturnTransition(new Slide());
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.__constraintlayout_mainscreen_filter,filterFragment);
-                __button_Post.setVisibility(View.GONE);
+                __button_map.setVisibility(View.GONE);
                 __button_filter.setVisibility(View.GONE);
+                __button_Post.hide();
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
