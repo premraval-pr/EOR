@@ -179,29 +179,127 @@
         android:layout_marginLeft="15dp"
         />
 
-    <Button
-        android:id="@+id/__button_bookbid"
+
+    <TextView
+        android:id="@+id/__textview_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="@color/__textColor"
+        android:textSize="20sp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/__fab_save"
+        app:layout_constraintBottom_toBottomOf="@id/__fab_save"
+        app:layout_constraintEnd_toStartOf="@id/__fab_save"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/__fab_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/__fab_reply"
+        android:layout_marginBottom="10dp"
+        app:fabSize="mini"
+        android:src="@drawable/__hearticon"
+        android:backgroundTint="#D84315"
+        app:layout_constraintStart_toStartOf="@id/__fab_options"
+        app:layout_constraintEnd_toEndOf="@id/__fab_options"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/__textview_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reply"
+        android:textColor="@color/__textColor"
+        android:textSize="20sp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/__fab_reply"
+        app:layout_constraintBottom_toBottomOf="@id/__fab_reply"
+        app:layout_constraintEnd_toStartOf="@id/__fab_reply"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/__fab_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/__fab_bid"
+        android:layout_marginBottom="10dp"
+        app:fabSize="mini"
+        android:src="@drawable/__replyicon"
+        android:backgroundTint="#F9A825"
+        app:layout_constraintStart_toStartOf="@id/__fab_options"
+        app:layout_constraintEnd_toEndOf="@id/__fab_options"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/__textview_bidd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bid "
+        android:textColor="@color/__textColor"
+        android:textSize="20sp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/__fab_bid"
+        app:layout_constraintBottom_toBottomOf="@id/__fab_bid"
+        app:layout_constraintEnd_toStartOf="@id/__fab_bid"
+        android:visibility="invisible"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/__fab_bid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/__fab_book"
+        android:layout_marginBottom="10dp"
+        app:fabSize="mini"
+        android:src="@drawable/__bidicon"
+        android:backgroundTint="#2E7D32"
+        app:layout_constraintStart_toStartOf="@id/__fab_options"
+        app:layout_constraintEnd_toEndOf="@id/__fab_options"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/__textview_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book"
-        android:textColor="#ffffff"
-        android:layout_marginTop="15dp"
-        android:paddingHorizontal="50dp"
-        android:backgroundTint="@color/__primaryColor"
-        app:layout_constraintTop_toBottomOf="@id/__textview_postcreated"
-        app:layout_constraintStart_toStartOf="@id/__textview_itemdescription"
-        app:layout_constraintBottom_toTopOf="@id/__button_reply"
-        android:background="@drawable/__roundbackground"
+        android:textColor="@color/__textColor"
+        android:textSize="20sp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/__fab_book"
+        app:layout_constraintBottom_toBottomOf="@id/__fab_book"
+        app:layout_constraintEnd_toStartOf="@id/__fab_book"
+        android:visibility="invisible"
         />
 
-    <Button
-        android:id="@+id/__button_reply"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/__fab_book"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="25dp"
-        android:textColor="@color/__primaryLightBackground"
-        android:text="Bid"
-        android:backgroundTint="@color/__primaryColor"
+        app:layout_constraintBottom_toTopOf="@id/__fab_options"
+        android:layout_marginBottom="10dp"
+        app:fabSize="mini"
+        android:src="@drawable/__checkicon"
+        android:backgroundTint="#AD1457"
+        app:layout_constraintStart_toStartOf="@id/__fab_options"
+        app:layout_constraintEnd_toEndOf="@id/__fab_options"
+        android:visibility="invisible"
+       />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/__fab_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/__primaryColor"
+        android:src="@drawable/__add"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,15 @@
 package com.example.eor.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +21,7 @@ import com.example.eor.adapter.ImageViewPageAdapter;
 import com.example.eor.adapter.PostAdapter_ExplorePostsActivity;
 import com.example.eor.dao.PostDescription_DAO;
 import com.example.eor.model.PostDescription_Model;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,16 +29,18 @@ import java.util.Date;
 
 public class PostDescActivity extends AppCompatActivity {
 
-    Button bookbid, reply;
     ViewPager viewPager;
     TextView textViewPostDesc, textViewPostTitle, textViewPostPrice, textViewPostAvailableFrom, textViewPostAvailableTo, textViewPostCreatedOn, textViewUserName, textViewLocation;
     PostDescription_Model postDescription_model;
+    FloatingActionButton fab_options,fab_book,fab_bid,fab_reply,fab_save;
+    Animation fab_open,fab_close,fab_rotate_clock,fab_rotate_anti;
+    TextView textView_book,textView_bid,textView_reply,textView_save;
+    boolean isOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdesc);
-        bookbid = findViewById(R.id.__button_bookbid);
         textViewPostDesc = findViewById(R.id.__textview_itemdescription);
         textViewPostDesc.setMovementMethod(new ScrollingMovementMethod());
         textViewPostTitle = findViewById(R.id.__textview_itemtitle);
@@ -41,8 +50,52 @@ public class PostDescActivity extends AppCompatActivity {
         textViewPostCreatedOn = findViewById(R.id.__textview_postcreatedview);
         textViewUserName = findViewById(R.id.__textview_username);
         textViewLocation = findViewById(R.id.__textview_location);
+        fab_options = findViewById(R.id.__fab_options);
+        fab_book = findViewById(R.id.__fab_book);
+        fab_bid = findViewById(R.id.__fab_bid);
+        fab_reply = findViewById(R.id.__fab_reply);
+        fab_save = findViewById(R.id.__fab_save);
+        fab_open = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_close);
+        fab_rotate_clock = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_rotate_clocl);
+        fab_rotate_anti = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fab_rotate_anti);
+        textView_book = findViewById(R.id.__textview_book);
+        textView_bid = findViewById(R.id.__textview_bidd);
+        textView_reply = findViewById(R.id.__textview_reply);
+        textView_save = findViewById(R.id.__textview_save);
 
-        bookbid.setOnClickListener(new View.OnClickListener() {
+        fab_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isOpen){
+                    fab_book.startAnimation(fab_close);
+                    textView_book.startAnimation(fab_close);
+                    fab_bid.startAnimation(fab_close);
+                    textView_bid.startAnimation(fab_close);
+                    fab_reply.startAnimation(fab_close);
+                    textView_reply.startAnimation(fab_close);
+                    fab_save.startAnimation(fab_close);
+                    textView_save.startAnimation(fab_close);
+                    fab_options.startAnimation(fab_rotate_anti);
+                    isOpen = false;
+                }
+                else{
+                    fab_book.startAnimation(fab_open);
+                    textView_book.startAnimation(fab_open);
+                    fab_bid.startAnimation(fab_open);
+                    textView_bid.startAnimation(fab_open);
+                    fab_reply.startAnimation(fab_open);
+                    textView_reply.startAnimation(fab_open);
+                    fab_save.startAnimation(fab_open);
+                    textView_save.startAnimation(fab_open);
+                    fab_options.startAnimation(fab_rotate_clock);
+                    isOpen = true;
+                }
+            }
+        });
+
+
+        fab_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -70,8 +123,7 @@ public class PostDescActivity extends AppCompatActivity {
             }
         });
 
-        reply = findViewById(R.id.__button_reply);
-        reply.setOnClickListener(new View.OnClickListener() {
+        fab_bid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
