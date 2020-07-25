@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_hisory" />
 
     <fragment
+        android:id="@+id/nav_saved"
+        android:name="com.example.eor.fragment.SavedPostsFragment"
+        android:label="Saved Posts"
+        tools:layout="@layout/fragment_saved_posts" />
+
+    <fragment
         android:id="@+id/nav_inbox"
         android:name="com.example.eor.fragment.InboxFragment"
         android:label="Inbox"

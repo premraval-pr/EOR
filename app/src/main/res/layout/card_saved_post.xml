@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center_horizontal"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:layout_margin="5dp"
+    app:cardPreventCornerOverlap="true"
+    android:clickable="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#fff"
+        android:paddingHorizontal="5dp"
+        >
+
+        <!-- Media -->
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/__imageview_saved_posts_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Post Image"
+            app:layout_constraintBottom_toTopOf="@id/__textview_saved_post_title"
+            />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/__textColor"
+                android:id="@+id/__textview_saved_post_title"
+                app:layout_constraintStart_toStartOf="@id/__imageview_saved_posts_image"
+                app:layout_constraintTop_toBottomOf="@id/__imageview_saved_posts_image"
+                android:text="Title"
+                app:layout_constraintBottom_toTopOf="@id/__textview_saved_post_description"
+                android:textSize="20sp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/__textColor"
+                app:layout_constraintStart_toStartOf="@id/__imageview_saved_posts_image"
+                app:layout_constraintTop_toBottomOf="@id/__textview_saved_post_title"
+                android:layout_marginTop="8dp"
+                android:text="Description"
+                android:textSize="20sp"
+                android:id="@+id/__textview_saved_post_description"
+
+                app:layout_constraintBottom_toTopOf="@id/__textview_saved_post_rent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/__imageview_saved_posts_image"
+                app:layout_constraintTop_toBottomOf="@id/__textview_saved_post_description"
+                android:id="@+id/__textview_saved_post_rent"
+                android:text="Rent"
+                android:textSize="20sp"
+                android:textColor="@color/__textColor"
+                app:layout_constraintBottom_toTopOf="@id/__textview_saved_post_location"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/__imageview_saved_posts_image"
+                android:id="@+id/__textview_saved_post_location"
+                app:layout_constraintTop_toBottomOf="@id/__textview_saved_post_rent"
+                android:text="Location"
+                android:textColor="@color/__textColor"
+                app:layout_constraintLeft_toLeftOf="@id/__icon_heart"
+                android:textSize="20sp"
+
+
+                />
+
+            <ImageButton
+                android:backgroundTintMode="screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:id="@+id/__icon_heart"
+                app:layout_constraintEnd_toEndOf="@id/__imageview_saved_posts_image"
+                android:clickable="true"
+                app:layout_constraintRight_toRightOf="@id/__textview_saved_post_location"
+                app:layout_constraintTop_toBottomOf="@id/__textview_saved_post_rent"
+                android:src="@drawable/__hearticon"
+                app:layout_constraintBottom_toBottomOf="@id/__textview_saved_post_location"
+
+                android:text="Save" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

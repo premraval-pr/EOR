@@ -23,6 +23,10 @@
             android:icon="@drawable/__menuhistoryicon"
             android:title="History" />
         <item
+            android:id="@+id/nav_saved"
+            android:icon="@drawable/__menusavedicon"
+            android:title="Saved Posts" />
+        <item
             android:id="@+id/nav_inbox"
             android:icon="@drawable/__menuinboxicon"
             android:title="Inbox" />
