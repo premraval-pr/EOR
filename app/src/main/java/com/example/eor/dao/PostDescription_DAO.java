@@ -25,6 +25,7 @@ public class PostDescription_DAO {
     String post_id;
     String post_description;
     String post_price;
+    String user_id;
     Date dateFrom;
     Date dateTo;
     Date dateCreated;
@@ -73,13 +74,14 @@ public class PostDescription_DAO {
                 post_price=jsonObject1.getString("post_price");
                 f_name=jsonObject1.getString("user_fname");
                 city=jsonObject1.getString("user_city");
+                user_id = jsonObject1.getString("usersuser_id");
 
 
             }
 
             return new PostDescription_Model(this.post_id,post_title ,post_description
                     , post_price,dateFrom
-                    , dateTo, dateCreated, image_post,f_name,city );
+                    , dateTo, dateCreated, image_post,f_name,city, user_id );
         } catch (Exception e) {
             System.out.println(e+"date error");
         }

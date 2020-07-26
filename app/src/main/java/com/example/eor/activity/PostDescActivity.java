@@ -137,6 +137,15 @@ public class PostDescActivity extends AppCompatActivity {
             }
         });
 
+        fab_reply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ChatActivity.class)
+                .putExtra("Itemname",postDescription_model.getPostId()+"_"+postDescription_model.getUser_id()+"_"+SlidingDrawerActivity.USER_ID)
+                .putExtra("new","new"));
+            }
+        });
+
         setPostDescription();
     }
 

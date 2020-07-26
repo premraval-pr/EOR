@@ -21,12 +21,13 @@ import com.example.eor.R;
 import com.example.eor.model.MyMessagesData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAdapter.MessageViewHolder>
 {
 
-    public static ArrayList<MyMessagesData>  messagesData;
+    public static ArrayList<MyMessagesData>  messagesData = new ArrayList<>();
     private MessageListener messageListener;
 
     public MyMessagesDataAdapter(MessageListener messagesListener) {
@@ -76,6 +77,12 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
     @Override
     public int getItemCount() {
         return messagesData.size();
+    }
+
+    public void setList(List<MyMessagesData> grps) {
+        messagesData.clear();
+        messagesData.addAll(grps);
+        notifyDataSetChanged();
     }
 
 

@@ -3,6 +3,7 @@ package com.example.eor.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -20,7 +21,9 @@ import com.example.eor.R;
 import com.example.eor.adapter.ChatAdapter;
 import com.example.eor.model.Chat;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ChatActivity extends AppCompatActivity {
@@ -35,13 +40,13 @@ public class ChatActivity extends AppCompatActivity {
 
     RecyclerView ChatRecyclerView;
     ChatAdapter chatAdapter;
-    String demoChat = "demo";
     EditText etMessage;
     ImageView send;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Chat> chatArrayList;
     String name="";
     TextView itemtitle;
+    boolean isNew = false;
 
 
     @Override
@@ -54,6 +59,8 @@ public class ChatActivity extends AppCompatActivity {
         chatAdapter = new ChatAdapter(this,chatArrayList);
         Intent i=getIntent();
         name=i.getStringExtra("Itemname");
+        isNew = i.hasExtra("new");
+        if(isNew) addChat();
         itemtitle.setText(name);
         ChatRecyclerView.setAdapter(chatAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -69,11 +76,25 @@ public class ChatActivity extends AppCompatActivity {
         loadChat();
     }
 
+    private void addChat() {
+        Map<String,Object> stringObjectMap = new HashMap<>();
+        stringObjectMap.put(name,null);
+        db.collection("chats")
+                .document(name)
+                .set(stringObjectMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("SUCCESS", "onSuccess: CREATED WITH" + name);
+                    }
+                });
+    }
+
     private void sendMessage(final String message) {
 
         final String loggedUSer = SlidingDrawerActivity.USER_ID;
         db.collection("chats")
-                .document(demoChat)
+                .document(name)
                 .collection("messages")
                 .add(new Chat(message,loggedUSer, Timestamp.now()))
                 .addOnFailureListener(new OnFailureListener() {
@@ -96,7 +117,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void loadChat(){
         db.collection("chats")
-                .document(demoChat)
+                .document(name)
                 .collection("messages")
                 .orderBy("timecreated")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
