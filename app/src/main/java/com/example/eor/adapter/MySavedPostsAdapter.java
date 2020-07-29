@@ -1,6 +1,7 @@
 package com.example.eor.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eor.R;
+import com.example.eor.activity.PostDescActivity;
 import com.example.eor.model.MySavedPostsModel;
 import com.squareup.picasso.Picasso;
 
@@ -21,6 +23,8 @@ public class MySavedPostsAdapter extends RecyclerView.Adapter<MySavedPostsAdapte
 
     ArrayList<MySavedPostsModel> mySavedPostsModelList;
     Context context;
+    Intent intent_from_saved_posts_to_post_desc;
+
 
     public MySavedPostsAdapter(ArrayList<MySavedPostsModel> myListData,Context context) {
         this.mySavedPostsModelList = myListData;
@@ -37,7 +41,7 @@ public class MySavedPostsAdapter extends RecyclerView.Adapter<MySavedPostsAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SavedPostsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final SavedPostsViewHolder holder, int position) {
         final MySavedPostsModel mySavedPostsModel = mySavedPostsModelList.get(position);
 
         holder.textView_saved_post_title.setText(mySavedPostsModel.getTitle());
@@ -45,6 +49,16 @@ public class MySavedPostsAdapter extends RecyclerView.Adapter<MySavedPostsAdapte
         holder.textView_saved_post_rent.setText(mySavedPostsModel.getRent());
         holder.textView_saved_post_location.setText(mySavedPostsModel.getLocation());
         Picasso.with(context).load(mySavedPostsModel.getImage_url()).into(holder.imageView_saved_post);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    intent_from_saved_posts_to_post_desc = new Intent(context,PostDescActivity.class);
+                    intent_from_saved_posts_to_post_desc.putExtra("postid",mySavedPostsModel.getId());
+                    v.getContext().startActivity(intent_from_saved_posts_to_post_desc);
+
+            }
+        });
     }
 
     @Override

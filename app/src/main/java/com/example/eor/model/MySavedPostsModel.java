@@ -5,20 +5,21 @@ public class MySavedPostsModel
 
     String title,description,rent,location;
     String image_url;
+    String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getImage_url() {
         return image_url;
     }
 
     public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
-
-    public MySavedPostsModel(String title, String description, String rent, String location, String image_url) {
-        this.title = title;
-        this.description = description;
-        this.rent = rent;
-        this.location = location;
         this.image_url = image_url;
     }
 
@@ -69,6 +70,14 @@ public class MySavedPostsModel
         this.title = title;
         this.description = description;
         this.rent = rent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MySavedPostsModel that = (MySavedPostsModel) o;
+        return id.equals(that.id);
     }
 }
 

@@ -1,10 +1,22 @@
 package com.example.eor.dao;
 
+import android.os.AsyncTask;
 import android.os.StrictMode;
 
+import com.example.eor.activity.SlidingDrawerActivity;
 import com.example.eor.api.Paths;
+import com.example.eor.listener.SavedPostListener;
 import com.example.eor.model.PostDescription_Model;
+import com.example.eor.model.UploadPost_Model;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,8 +43,10 @@ public class PostDescription_DAO {
     Date dateCreated;
     String f_name,city;
     public static ArrayList<String> image_post;
+
     public PostDescription_Model getPost(String post_id) {
         String line, result;
+
 
         try {
             System.out.println(post_id);
@@ -87,4 +101,8 @@ public class PostDescription_DAO {
         }
         return null;
     }
+
+
+
+
 }

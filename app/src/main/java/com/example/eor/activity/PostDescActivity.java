@@ -20,14 +20,17 @@ import com.example.eor.R;
 import com.example.eor.adapter.ImageViewPageAdapter;
 import com.example.eor.adapter.PostAdapter_ExplorePostsActivity;
 import com.example.eor.dao.PostDescription_DAO;
+import com.example.eor.dao.Saved_Posts_DAO;
+import com.example.eor.listener.SavedPostListener;
 import com.example.eor.model.PostDescription_Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PostDescActivity extends AppCompatActivity {
+public class PostDescActivity extends AppCompatActivity implements SavedPostListener {
 
     ViewPager viewPager;
     TextView textViewPostDesc, textViewPostTitle, textViewPostPrice, textViewPostAvailableFrom, textViewPostAvailableTo, textViewPostCreatedOn, textViewUserName, textViewLocation;
@@ -35,12 +38,18 @@ public class PostDescActivity extends AppCompatActivity {
     FloatingActionButton fab_options,fab_book,fab_bid,fab_reply,fab_save;
     Animation fab_open,fab_close,fab_rotate_clock,fab_rotate_anti;
     TextView textView_book,textView_bid,textView_reply,textView_save;
+    Saved_Posts_DAO saved_posts_dao;
     boolean isOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdesc);
+        Intent intent_from_saved_post = getIntent();
+
+
+
+
         textViewPostDesc = findViewById(R.id.__textview_itemdescription);
         textViewPostDesc.setMovementMethod(new ScrollingMovementMethod());
         textViewPostTitle = findViewById(R.id.__textview_itemtitle);
@@ -63,6 +72,9 @@ public class PostDescActivity extends AppCompatActivity {
         textView_bid = findViewById(R.id.__textview_bidd);
         textView_reply = findViewById(R.id.__textview_reply);
         textView_save = findViewById(R.id.__textview_save);
+        saved_posts_dao = new Saved_Posts_DAO(this);
+
+
 
         fab_options.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,11 +158,31 @@ public class PostDescActivity extends AppCompatActivity {
             }
         });
 
-        setPostDescription();
+
+        fab_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saved_posts_dao.CreateSavedPost(postDescription_model.getPostId());
+
+
+
+
+            }
+        });
+        String post_id = intent_from_saved_post.getStringExtra("postid");
+        if(post_id!=null)
+        {
+            System.out.println("Intent"+post_id);
+            setPostDescription(post_id);
+        }
+        else {
+            setPostDescription();
+        }
+
+
     }
 
     public void setPostDescription() {
-
         PostDescription_DAO postDescription_dao = new PostDescription_DAO();
         postDescription_model = postDescription_dao.getPost(PostAdapter_ExplorePostsActivity.post_id);
         textViewPostTitle.setText(postDescription_model.getPostTitle());
@@ -166,5 +198,33 @@ public class PostDescActivity extends AppCompatActivity {
         textViewLocation.setText(postDescription_model.getUser_city());
     }
 
+    public void setPostDescription(String id) {
+        PostDescription_DAO postDescription_dao = new PostDescription_DAO();
+        postDescription_model = postDescription_dao.getPost(id);
+        textViewPostTitle.setText(postDescription_model.getPostTitle());
+        textViewPostPrice.setText("$ " + postDescription_model.getPostPrice());
+        textViewPostDesc.setText(postDescription_model.getPostDescription());
+        textViewPostAvailableFrom.setText(postDescription_model.getPostFrom().toString().substring(4,10)+postDescription_model.getPostFrom().toString().substring(23,28));
+        textViewPostAvailableTo.setText(postDescription_model.getPostTo().toString().substring(4,10)+postDescription_model.getPostTo().toString().substring(23,28));
+        textViewPostCreatedOn.setText(postDescription_model.getPostCreated().toString().substring(4,10)+postDescription_model.getPostCreated().toString().substring(23,28));
+        viewPager = findViewById(R.id.__scrollview_postimage);
+        ImageViewPageAdapter imageViewPageAdapter = new ImageViewPageAdapter(this,postDescription_model.getImagePath());
+        viewPager.setAdapter(imageViewPageAdapter);
+        textViewUserName.setText(postDescription_model.getUser_fname());
+        textViewLocation.setText(postDescription_model.getUser_city());
+    }
 
+    @Override
+    public void apiResult(String result) {
+
+        if(result.equals("1"))
+        {
+            Snackbar.make(fab_options,postDescription_model.getPostTitle()+" saved to Saved Posts",Snackbar.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Snackbar.make(fab_options,postDescription_model.getPostTitle()+" already in Saved Posts",Snackbar.LENGTH_SHORT).show();
+        }
+
+    }
 }
