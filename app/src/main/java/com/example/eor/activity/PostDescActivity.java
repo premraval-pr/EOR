@@ -163,10 +163,6 @@ public class PostDescActivity extends AppCompatActivity implements SavedPostList
             @Override
             public void onClick(View v) {
                 saved_posts_dao.CreateSavedPost(postDescription_model.getPostId());
-
-
-
-
             }
         });
         String post_id = intent_from_saved_post.getStringExtra("postid");
@@ -179,6 +175,13 @@ public class PostDescActivity extends AppCompatActivity implements SavedPostList
             setPostDescription();
         }
 
+        textViewUserName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ProfileActivity.class)
+                .putExtra("user_id",postDescription_model.getUser_id()));
+            }
+        });
 
     }
 

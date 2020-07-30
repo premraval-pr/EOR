@@ -27,7 +27,7 @@ public class SavedPostsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_saved_posts, container, false);
-        ArrayList<MySavedPostsModel> myListData = new ArrayList<MySavedPostsModel>();
+        ArrayList<MySavedPostsModel> myListData;
         saved_posts_dao = new Saved_Posts_DAO();
 
 
