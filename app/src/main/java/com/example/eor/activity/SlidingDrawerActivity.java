@@ -52,7 +52,7 @@ public class SlidingDrawerActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_profile, R.id.nav_posts,
-                R.id.nav_history, R.id.nav_inbox, R.id.nav_social)
+                R.id.nav_history, R.id.nav_saved ,R.id.nav_inbox, R.id.nav_social)
                 .setDrawerLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
