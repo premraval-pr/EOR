@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eor.R;
 import com.example.eor.adapter.ChatAdapter;
+import com.example.eor.dao.PostDescription_DAO;
 import com.example.eor.model.Chat;
+import com.example.eor.model.PostDescription_Model;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,9 +45,15 @@ public class ChatActivity extends AppCompatActivity {
     ChatAdapter chatAdapter;
     EditText etMessage;
     ImageView send;
+    TextView textView_location;
+    TextView textView_username;
+    ImageView imageView_chat;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Chat> chatArrayList;
     String name="";
+
+    PostDescription_DAO postDescription_dao;
+    PostDescription_Model postDescription_model;
     TextView itemtitle;
     boolean isNew = false;
 
@@ -54,14 +63,35 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         itemtitle=findViewById(R.id.__textview_itemtitle_chat);
+        textView_location = findViewById(R.id.__textview_location_chat);
+        imageView_chat = findViewById(R.id.__imageview_itemimage_chat);
+        textView_username = findViewById(R.id.__textview_username_chat);
+
+        postDescription_dao = new PostDescription_DAO();
+
+
+
+
+
         chatArrayList = new ArrayList<>();
         ChatRecyclerView = findViewById(R.id.__recycleview_chatlayout_chat);
         chatAdapter = new ChatAdapter(this,chatArrayList);
         Intent i=getIntent();
         name=i.getStringExtra("Itemname");
+
+        postDescription_model = postDescription_dao.getPost(name.substring(0,5));
+
+
+        textView_location.setText(postDescription_model.getUser_city());
+        textView_username.setText(postDescription_model.getUser_fname());
+        Picasso.with(this).load(postDescription_model.getImagePath().get(0)).resize(200,200)
+                .centerCrop().into(imageView_chat);
+        itemtitle.setText(postDescription_model.getPostTitle());
+
+
         isNew = i.hasExtra("new");
         if(isNew) addChat();
-        itemtitle.setText(name);
+
         ChatRecyclerView.setAdapter(chatAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         ChatRecyclerView.setLayoutManager(linearLayoutManager);

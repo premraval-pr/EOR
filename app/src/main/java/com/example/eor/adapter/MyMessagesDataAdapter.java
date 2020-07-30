@@ -6,6 +6,7 @@
 
 package com.example.eor.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eor.activity.SlidingDrawerActivity;
+import com.example.eor.fragment.InboxFragment;
 import com.example.eor.listener.MessageListener;
 import com.example.eor.R;
 import com.example.eor.model.MyMessagesData;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +33,12 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
 
     public static ArrayList<MyMessagesData>  messagesData = new ArrayList<>();
     private MessageListener messageListener;
+    Context context;
 
-    public MyMessagesDataAdapter(MessageListener messagesListener) {
+    public MyMessagesDataAdapter(MessageListener messagesListener,Context context) {
 
         this.messageListener = messagesListener;
+        this.context = context;
     }
 
     @NonNull
@@ -51,6 +57,8 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
     public void onBindViewHolder(@NonNull MyMessagesDataAdapter.MessageViewHolder holder, final int position) {
         holder.__textView_MessageView.setText(messagesData.get(position).get__textview_MessageShort());
         holder.__textview_NameMessage.setText(messagesData.get(position).get__textview_NameForMessageView());
+        Picasso.with(context).load(messagesData.get(position).get__imageview_Message()).resize(200,200)
+                .centerCrop().into(holder.__imageView_MessageView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,14 +67,18 @@ public class MyMessagesDataAdapter extends RecyclerView.Adapter<MyMessagesDataAd
             }
         });
 
-        ConstraintLayout.LayoutParams __constraintLayoutParams_MessageElement = (ConstraintLayout.LayoutParams) holder.itemView.findViewById(R.id.__constraintlayout_messageSingleElement).getLayoutParams();
-        if(position % 2 == 0)
+        ConstraintLayout.LayoutParams __constraintLayoutParams_MessageElement =
+                (ConstraintLayout.LayoutParams)
+                        holder.itemView.findViewById(R.id.__constraintlayout_messageSingleElement).getLayoutParams();
+        String[] mesList = messagesData.get(position).get__firebaseChatID().split("_");
+
+        if(SlidingDrawerActivity.USER_ID.equals(mesList[1]))
         {
                 __constraintLayoutParams_MessageElement.setMarginStart(20);
                 __constraintLayoutParams_MessageElement.setMarginEnd(0);
                 holder.__constraintLayout_MessageView.setPadding(20,0,40,0);
         }
-        else {
+        else if(SlidingDrawerActivity.USER_ID.equals(mesList[2])) {
                 __constraintLayoutParams_MessageElement.setMarginStart(0);
                 __constraintLayoutParams_MessageElement.setMarginEnd(20);
                 holder.__constraintLayout_MessageView.setPadding(40,0,40,0);

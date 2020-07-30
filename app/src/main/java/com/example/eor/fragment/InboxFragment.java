@@ -19,8 +19,10 @@ import com.example.eor.R;
 import com.example.eor.activity.ChatActivity;
 import com.example.eor.activity.SlidingDrawerActivity;
 import com.example.eor.adapter.MyMessagesDataAdapter;
+import com.example.eor.dao.PostDescription_DAO;
 import com.example.eor.listener.MessageListener;
 import com.example.eor.model.MyMessagesData;
+import com.example.eor.model.PostDescription_Model;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -34,6 +36,8 @@ import java.util.List;
 public class InboxFragment extends Fragment implements MessageListener {
 
     RecyclerView messagerecyclerView;
+    PostDescription_DAO postDescription_dao;
+    PostDescription_Model postDescription_model;
 
     @Nullable
     @Override
@@ -41,7 +45,9 @@ public class InboxFragment extends Fragment implements MessageListener {
         View inboxView = inflater.inflate(R.layout.fragment_inbox,container,false);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final MyMessagesDataAdapter myMessagesDataAdapter = new MyMessagesDataAdapter(this);
+        final MyMessagesDataAdapter myMessagesDataAdapter = new MyMessagesDataAdapter(this,getContext());
+
+        postDescription_dao = new PostDescription_DAO();
 
         messagerecyclerView = inboxView.findViewById(R.id.__recyclerview_messageView);
         messagerecyclerView.setHasFixedSize(true);
@@ -56,7 +62,11 @@ public class InboxFragment extends Fragment implements MessageListener {
                         if(queryDocumentSnapshots!=null){
                             for(DocumentSnapshot doc: queryDocumentSnapshots){
                                 if(doc.getId().contains("_" + SlidingDrawerActivity.USER_ID)){
-                                    grps.add(new MyMessagesData(null,doc.getId(),null));
+                                    postDescription_model = postDescription_dao.getPost(doc.getId().substring(0,5));
+                                    grps.add(new MyMessagesData(null,
+                                            doc.getId(),postDescription_model.getPostTitle(),
+                                            null,
+                                            postDescription_model.getImagePath().get(0),postDescription_model.getUser_fname(),postDescription_model.getUser_city()));
                                 }
                             }
                         }
@@ -71,7 +81,7 @@ public class InboxFragment extends Fragment implements MessageListener {
     @Override
     public void ViewonClick(int pos) {
         Intent intent = new Intent(getContext(), ChatActivity.class);
-        intent.putExtra("Itemname",MyMessagesDataAdapter.messagesData.get(pos).get__textview_NameForMessageView());
+        intent.putExtra("Itemname",MyMessagesDataAdapter.messagesData.get(pos).get__firebaseChatID());
         startActivity(intent);
     }
 }

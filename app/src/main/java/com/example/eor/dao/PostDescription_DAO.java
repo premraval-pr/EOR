@@ -46,8 +46,6 @@ public class PostDescription_DAO {
 
     public PostDescription_Model getPost(String post_id) {
         String line, result;
-
-
         try {
             System.out.println(post_id);
             image_post=new ArrayList<>();
