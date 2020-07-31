@@ -94,6 +94,17 @@ public class ExplorePost_Model {
         this.longitude = longitude;
     }
 
+    public ExplorePost_Model(String id, String title,String username, String location, String image_path, double price) {
+        this.id = id;
+        this.title=title;
+        this.username = username;
+        this.location = location;
+        this.image_path =image_path;
+        this.price = price;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
