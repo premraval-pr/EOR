@@ -185,6 +185,7 @@
         android:layout_height="wrap_content"
         android:text="Start Bid"
         android:textColor="#fff"
+        android:visibility="invisible"
         android:background="@drawable/__roundbackground_btn"
         app:layout_constraintTop_toBottomOf="@id/__edittext_addpolicy"
         app:layout_constraintRight_toRightOf="parent"

@@ -7,7 +7,7 @@
     tools:context=".activity.PostsBid"
     android:paddingTop="10dp"
     android:id="@+id/constraintlayout_view"
-    android:background="@color/__primaryLightBackground">
+    android:background="#fff">
 
 
     <TextView

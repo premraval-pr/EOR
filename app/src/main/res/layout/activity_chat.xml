@@ -8,10 +8,11 @@
     android:background="#fff">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/__imageview_itemimage_chat"
         android:src="@drawable/__defaultimageicon"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -67,26 +68,20 @@
         app:layout_constraintLeft_toRightOf="@id/__imageview_location_chat"
         app:layout_constraintTop_toBottomOf="@id/__textview_itemtitle_chat"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/__textview_price_chat"
-        android:text="$10.00"
-        android:paddingHorizontal="15dp"
-        android:paddingVertical="8dp"
-        android:layout_marginRight="15dp"
-        android:textColor="@color/__primaryLightBackground"
-        android:textSize="15sp"
-        android:backgroundTint="@color/__primaryColor"
-        android:background="@drawable/rectangle_shape_pricedisplay"
+    <View
+        android:id="@+id/chat_separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/__lightgrey"
         app:layout_constraintTop_toBottomOf="@id/__imageview_itemimage_chat"
-        app:layout_constraintRight_toRightOf="parent"/>
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/__recycleview_chatlayout_chat"
-        app:layout_constraintTop_toBottomOf="@id/__textview_price_chat"
+        app:layout_constraintTop_toBottomOf="@id/chat_separator"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@id/__edittext_messagetype_chat"/>
