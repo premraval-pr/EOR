@@ -28,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity implements IProfileListen
     List<ExplorePost_Model> items;
     Intent intent_from_PostDec;
     TextView full_name, u_name, location_user, numberOfPost;
+    ImageView profile_image;
     int size;
 
 
@@ -40,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity implements IProfileListen
         u_name = findViewById(R.id.__textviewPost_username);
         location_user = findViewById(R.id.__textviewPost_location);
         numberOfPost = findViewById(R.id.__textviewPost_numberOfPostsinNumber);
+        profile_image = findViewById(R.id.__imageviewPost_userIconImage);
 
         recyclerView = findViewById(R.id.__recyclerview_userprofile);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
@@ -54,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity implements IProfileListen
         full_name.setText(fullName);
         u_name.setText(username);
         location_user.setText(location);
+
+        if(user_id.equals("U0013")) profile_image.setImageResource(R.drawable.prem_1);
 
 
 

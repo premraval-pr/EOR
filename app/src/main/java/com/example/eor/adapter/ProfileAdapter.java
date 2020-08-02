@@ -39,9 +39,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         System.out.println("Title --->"+items.get(position).getTitle());
         Picasso.with(context)
                 .load(items.get(position).getImage_path())
-                .resize(600,600)
+                .fit()
+                .centerCrop()
                 .into(holder.images);
-        //holder.price.setText((int) items.get(position).getPrice());
+        holder.price.setText(String.format("$ %s", items.get(position).getPrice()));
         System.out.println("Price --->"+items.get(position).getPrice());
     }
 

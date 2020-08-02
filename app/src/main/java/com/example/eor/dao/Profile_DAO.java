@@ -71,7 +71,8 @@ public class Profile_DAO  extends AsyncTask<Void,Void,Void> {
                         jsonObject.getString("title"),
                         jsonObject.getString("username"),
                         jsonObject.getString("location"),
-                        jsonObject.getString("image_eor")
+                        jsonObject.getString("image_eor"),
+                        Double.parseDouble(jsonObject.getString("price"))
                        );
                 
                 if(!list.contains(explorePost_model)) {

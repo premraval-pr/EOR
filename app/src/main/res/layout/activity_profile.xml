@@ -11,12 +11,12 @@
 
     <ImageView
         android:id="@+id/__imageviewPost_userIconImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/__userimage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
 
         />
 
@@ -29,8 +29,7 @@
         android:textColor="@color/__textColor"
         app:layout_constraintTop_toTopOf="@id/__imageviewPost_userIconImage"
         app:layout_constraintLeft_toRightOf="@id/__imageviewPost_userIconImage"
-        app:layout_constraintBottom_toTopOf="@id/__textviewPost_username"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         />
 
     <TextView
@@ -52,7 +51,7 @@
         android:src="@drawable/__usernameimage"
         app:layout_constraintTop_toBottomOf="@id/__textviewPost_firstname"
         app:layout_constraintStart_toStartOf="@id/__textviewPost_firstname"
-        app:layout_constraintBottom_toBottomOf="@id/__imageviewPost_userIconImage"
+        android:layout_marginTop="20dp"
         />
     <TextView
         android:id="@+id/__textviewPost_username"
@@ -63,7 +62,7 @@
         android:textColor="@color/__textColor"
         app:layout_constraintTop_toBottomOf="@id/__textviewPost_firstname"
         app:layout_constraintLeft_toRightOf="@id/__imageview_userimage"
-        app:layout_constraintBottom_toBottomOf="@id/__imageviewPost_userIconImage"
+        android:layout_marginTop="20dp"
         />
 
     <ImageView
@@ -73,8 +72,8 @@
         android:src="@drawable/__location"
         app:layout_constraintTop_toBottomOf="@id/__textviewPost_firstname"
         app:layout_constraintLeft_toRightOf="@id/__textviewPost_username"
-        app:layout_constraintBottom_toBottomOf="@id/__imageviewPost_userIconImage"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         />
     <TextView
         android:id="@+id/__textviewPost_location"
@@ -85,7 +84,7 @@
         android:textColor="@color/__textColor"
         app:layout_constraintTop_toBottomOf="@id/__textviewPost_firstname"
         app:layout_constraintLeft_toRightOf="@id/__imageview_locationimage"
-        app:layout_constraintBottom_toBottomOf="@id/__imageviewPost_userIconImage"
+        android:layout_marginTop="20dp"
         />
 
     <TextView
@@ -138,8 +137,9 @@
         android:transformPivotY="0dp"
         android:layout_marginTop="20dp"
         android:max="5"
+        android:progressTint="@color/__primaryColor"
         android:rating="4.5"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:isIndicator="true"
         />
 
