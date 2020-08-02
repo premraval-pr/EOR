@@ -1,6 +1,7 @@
 package com.example.eor.model;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import java.util.Objects;
 
@@ -20,6 +21,15 @@ public class ExplorePost_Model {
     String location;
     String image_path;
     double price,latitude,longitude;
+
+
+    public ExplorePost_Model(String id, String title, String username, String location, String image) {
+        this.id = id;
+        this.title= title;
+        this.username = username;
+        this.location = location;
+        this.image_path = image;
+    }
 
     @NonNull
     @Override

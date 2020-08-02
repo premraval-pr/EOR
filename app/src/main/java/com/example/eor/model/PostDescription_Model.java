@@ -9,6 +9,8 @@ public class PostDescription_Model {
     ArrayList<String> imagePath;
     Date postFrom, postTo, postCreated;
 
+
+
     public String getUser_id() {
         return user_id;
     }
@@ -16,6 +18,8 @@ public class PostDescription_Model {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
+
+
 
     public PostDescription_Model(String postId, String postTitle, String postDescription, String postPrice, Date postFrom, Date postTo, Date postCreated, ArrayList<String> imagePath, String user_fname, String user_city,String user_id) {
         this.postId = postId;

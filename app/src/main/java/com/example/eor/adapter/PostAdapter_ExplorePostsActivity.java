@@ -26,17 +26,11 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
     public static String post_id="";
     int count;
 
-
-
-
     public PostAdapter_ExplorePostsActivity(ItemListener_ExplorePostsActivity iL, List<ExplorePost_Model> list)
     {
         this.iL=iL;
         this.list = ExplorePost_DAO.list;
     }
-
-
-
 
     @NonNull
     @Override
@@ -76,14 +70,7 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
                 }
             });
 
-
-
-
     }
-
-
-
-
 
     public class VH extends RecyclerView.ViewHolder
     {
@@ -93,8 +80,6 @@ public class PostAdapter_ExplorePostsActivity extends RecyclerView.Adapter<PostA
         TextView __textview_location;
         TextView __textview_price;
         ImageView __imageview_post;
-
-
 
         public VH(@NonNull View itemView) {
             super(itemView);

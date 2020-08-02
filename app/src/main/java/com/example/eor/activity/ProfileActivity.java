@@ -1,30 +1,72 @@
 package com.example.eor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.eor.R;
+import com.example.eor.adapter.ProfileAdapter;
+import com.example.eor.dao.Profile_DAO;
+import com.example.eor.listener.IProfileListener;
+import com.example.eor.model.ExplorePost_Model;
 import com.squareup.picasso.Picasso;
 
-public class ProfileActivity extends AppCompatActivity {
+import java.util.List;
 
-    String img1 ="https://d7hftxdivxxvm.cloudfront.net/?resize_to=width&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2F5hHS2QIKHR72V3oqRqZU2g%252Ffarmhouse-picasso-lead.jpg&width=1200&quality=80";
-    String img2 = "https://static01.nyt.com/images/2018/03/02/arts/design/02picasso-print/01picasso1-superJumbo.jpg";
-    String img3= "https://assets.vogue.com/photos/5be9adcb7509832ced44221c/master/pass/00-promo-picasso-an-intimate-portrait.jpg";
-    ImageView image1, image2, image3;
+public class ProfileActivity extends AppCompatActivity implements IProfileListener {
+
+    RecyclerView recyclerView;
+    ProfileAdapter profileAdapter;
+    Profile_DAO profile_dao;
+    String user_id, fullName, username, location;
+    List<ExplorePost_Model> items;
+    Intent intent_from_PostDec;
+    TextView full_name, u_name, location_user, numberOfPost;
+    int size;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        image1 = findViewById(R.id.__imageviewPost_imageOfPost1);
-        image2 = findViewById(R.id.__imageviewPost_imageOfPost2);
-        image3 = findViewById(R.id.__imageviewPost_imageOfPost3);
+        profile_dao = new Profile_DAO(this);
+        full_name = findViewById(R.id.__textviewPost_firstname);
+        u_name = findViewById(R.id.__textviewPost_username);
+        location_user = findViewById(R.id.__textviewPost_location);
+        numberOfPost = findViewById(R.id.__textviewPost_numberOfPostsinNumber);
 
-        Picasso.with(this).load(img1).resize(800,800).into(image1);
-        Picasso.with(this).load(img2).resize(800,800).into(image2);
-        Picasso.with(this).load(img3).resize(800,800).into(image3);
+        recyclerView = findViewById(R.id.__recyclerview_userprofile);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false));
+
+        //intent from post description
+        intent_from_PostDec = getIntent();
+        user_id = intent_from_PostDec.getStringExtra("user_id");
+        fullName = intent_from_PostDec.getStringExtra("full_name");
+        username = intent_from_PostDec.getStringExtra("full_name");
+        location = intent_from_PostDec.getStringExtra("location");
+
+        full_name.setText(fullName);
+        u_name.setText(username);
+        location_user.setText(location);
+
+
+
+        profile_dao.collectData(user_id);
+        numberOfPost.setText(size+"");
+        profileAdapter = new ProfileAdapter(this,items);
+        recyclerView.setAdapter(profileAdapter);
+
+    }
+
+    @Override
+    public void getUserProfilePosts(List<ExplorePost_Model> explorePost_models) {
+        this.size = explorePost_models.size();
+        this.items = explorePost_models;
     }
 }

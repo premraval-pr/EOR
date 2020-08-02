@@ -179,7 +179,10 @@ public class PostDescActivity extends AppCompatActivity implements SavedPostList
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),ProfileActivity.class)
-                .putExtra("user_id",postDescription_model.getUser_id()));
+                .putExtra("user_id",postDescription_model.getUser_id())
+                .putExtra("full_name",postDescription_model.getUser_fname())
+                .putExtra("user_name",postDescription_model.getUser_fname())
+                .putExtra("location", postDescription_model.getUser_city()));
             }
         });
 
