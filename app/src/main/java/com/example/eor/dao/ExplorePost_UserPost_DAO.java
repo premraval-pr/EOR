@@ -51,19 +51,25 @@ public class ExplorePost_UserPost_DAO extends AsyncTask<Void,Void,Void> {
                 stringBuilder.append(line+"\n");
             }
             result=stringBuilder.toString();
+            System.out.println(result);
             JSONArray ja=new JSONArray(result);
 
             for(int i=0;i<ja.length();i++)
             {
-                JSONObject jsonObject=ja.getJSONObject(i);
-                list.add(new ExplorePost_Model(jsonObject.getString("id"),
+               JSONObject jsonObject=ja.getJSONObject(i);
+                ExplorePost_Model explorePost_model=new ExplorePost_Model(jsonObject.getString("id"),
                         jsonObject.getString("title"),
                         jsonObject.getString("username"),
                         jsonObject.getString("location"),
                         jsonObject.getString("image_eor"),
-                        jsonObject.getDouble("price"),
-                        jsonObject.getDouble("latitude"),
-                        jsonObject.getDouble("longitude")));
+                        jsonObject.getDouble("price")
+                       );
+                if(!list.contains(explorePost_model)) {
+                    list.add(explorePost_model);
+
+
+                }
+
             }
 
         }
